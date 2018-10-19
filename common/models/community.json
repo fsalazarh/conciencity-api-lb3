@@ -20,9 +20,9 @@
       "model": "Commune",
       "foreignKey": ""
     },
-    "management": {
+    "manager": {
       "type": "hasMany",
-      "model": "Management",
+      "model": "Manager",
       "foreignKey": ""
     }
   },
