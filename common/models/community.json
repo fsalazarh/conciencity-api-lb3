@@ -1,0 +1,31 @@
+{
+  "name": "Community",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "commune": {
+      "type": "belongsTo",
+      "model": "Commune",
+      "foreignKey": ""
+    },
+    "management": {
+      "type": "hasMany",
+      "model": "Management",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

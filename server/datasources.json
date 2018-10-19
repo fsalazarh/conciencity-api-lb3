@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "apidb": {
+    "host": "ds233500.mlab.com",
+    "port": 33500,
+    "url": "",
+    "database": "conciencity",
+    "password": "Conciencity_1",
+    "name": "apidb",
+    "user": "admin-conciencity",
+    "connector": "mongodb"
+  }
+}
