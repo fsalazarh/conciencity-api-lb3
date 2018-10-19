@@ -47,7 +47,7 @@
     "dataSource": "apidb",
     "public": true
   },
-  "Management": {
+  "Manager": {
     "dataSource": "apidb",
     "public": true
   }

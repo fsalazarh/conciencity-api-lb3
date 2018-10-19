@@ -1,5 +1,5 @@
 {
-  "name": "Management",
+  "name": "Manager",
   "plural": "Managers",
   "base": "User",
   "idInjection": true,
