@@ -1,0 +1,24 @@
+{
+  "name": "Residence",
+  "plural": "Residences",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "communityId": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "community": {
+      "type": "belongsTo",
+      "model": "Community",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

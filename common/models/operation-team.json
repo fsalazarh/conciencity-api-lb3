@@ -1,15 +1,11 @@
 {
   "name": "OperationTeam",
-  "base": "User",
+  "base": "user",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "rut": {
-      "type": "string",
-      "required": true
-    },
     "birthday": {
       "type": "string"
     },

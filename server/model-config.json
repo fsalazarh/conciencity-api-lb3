@@ -14,7 +14,8 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -35,6 +36,10 @@
     "dataSource": "db",
     "public": false
   },
+  "user": {
+    "dataSource": "db",
+    "public": true
+  },
   "OperationTeam": {
     "dataSource": "apidb",
     "public": false
@@ -49,10 +54,17 @@
   },
   "CommunityManager": {
     "dataSource": "apidb",
-    "public": true
+    "public": true,
+    "options": {
+      "emailVerificationRequired": true
+    }
   },
   "CustomAccessToken": {
     "dataSource": "db",
+    "public": true
+  },
+  "Residence": {
+    "dataSource": "apidb",
     "public": true
   }
 }

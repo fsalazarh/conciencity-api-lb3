@@ -24,6 +24,11 @@
       "type": "hasMany",
       "model": "CommunityManager",
       "foreignKey": ""
+    },
+    "residences": {
+      "type": "hasMany",
+      "model": "Residence",
+      "foreignKey": ""
     }
   },
   "acls": [],
