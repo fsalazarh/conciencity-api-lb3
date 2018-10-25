@@ -1,6 +1,6 @@
 {
-  "name": "Manager",
-  "plural": "Managers",
+  "name": "CommunityManager",
+  "plural": "CommunityManagers",
   "base": "User",
   "idInjection": true,
   "options": {
@@ -18,6 +18,17 @@
   },
   "validations": [],
   "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "CustomAccessToken",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
+    },
     "community": {
       "type": "belongsTo",
       "model": "Community",

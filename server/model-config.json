@@ -37,7 +37,7 @@
   },
   "OperationTeam": {
     "dataSource": "apidb",
-    "public": true
+    "public": false
   },
   "Commune": {
     "dataSource": "apidb",
@@ -47,8 +47,12 @@
     "dataSource": "apidb",
     "public": true
   },
-  "Manager": {
+  "CommunityManager": {
     "dataSource": "apidb",
+    "public": true
+  },
+  "CustomAccessToken": {
+    "dataSource": "db",
     "public": true
   }
 }
