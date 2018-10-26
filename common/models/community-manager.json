@@ -1,23 +1,25 @@
 {
-  "name": "Manager",
-  "plural": "Managers",
-  "base": "User",
+  "name": "CommunityManager",
+  "plural": "CommunityManagers",
+  "base": "user",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "rut": {
-      "type": "string",
-      "required": true
-    },
-    "name": {
-      "type": "string",
-      "required": true
-    }
-  },
+  "properties": {},
   "validations": [],
   "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "CustomAccessToken",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
+    },
     "community": {
       "type": "belongsTo",
       "model": "Community",
