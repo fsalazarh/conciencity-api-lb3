@@ -1,19 +1,18 @@
 {
-  "name": "Residence",
-  "plural": "Residences",
-  "base": "user",
+  "name": "RecyclerCommunity",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "communityId": {
+    "assignedAt": {
+      "type": "date"
+    },
+    "state": {
       "type": "string"
     },
-    "floor": {
-      "type": "string"
-    },
-    "number": {
+    "dateCollection": {
       "type": "string"
     }
   },
@@ -22,6 +21,11 @@
     "community": {
       "type": "belongsTo",
       "model": "Community",
+      "foreignKey": ""
+    },
+    "recycler": {
+      "type": "belongsTo",
+      "model": "Recycler",
       "foreignKey": ""
     }
   },

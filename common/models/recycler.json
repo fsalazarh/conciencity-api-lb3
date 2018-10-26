@@ -1,0 +1,19 @@
+{
+  "name": "Recycler",
+  "base": "OperationTeam",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "recyclerCommunities": {
+      "type": "hasMany",
+      "model": "RecyclerCommunity",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -29,6 +29,11 @@
       "type": "hasMany",
       "model": "Residence",
       "foreignKey": ""
+    },
+    "recyclers": {
+      "type": "hasMany",
+      "model": "RecyclerCommunity",
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -66,5 +66,17 @@
   "Residence": {
     "dataSource": "apidb",
     "public": true
+  },
+  "Conciencity": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Recycler": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "RecyclerCommunity": {
+    "dataSource": "apidb",
+    "public": true
   }
 }

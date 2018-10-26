@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "dev": "nodemon server/server.js --watch common --watch server"
   },
   "dependencies": {
     "compression": "^1.0.3",
@@ -23,7 +24,8 @@
   },
   "devDependencies": {
     "eslint": "^3.17.1",
-    "eslint-config-loopback": "^8.0.0"
+    "eslint-config-loopback": "^8.0.0",
+    "nodemon": "^1.18.5"
   },
   "repository": {
     "type": "",
