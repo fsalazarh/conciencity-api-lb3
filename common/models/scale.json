@@ -1,0 +1,23 @@
+{
+  "name": "Scale",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "maxWeight": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "recycler": {
+      "type": "belongsTo",
+      "model": "Recycler",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

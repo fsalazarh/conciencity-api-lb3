@@ -1,26 +1,25 @@
 {
-  "name": "Recycler",
-  "base": "OperationTeam",
+  "name": "Bucket",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "capacity": {
+      "type": "number"
+    }
+  },
   "validations": [],
   "relations": {
-    "recyclerCommunities": {
-      "type": "hasMany",
-      "model": "RecyclerCommunity",
+    "residence": {
+      "type": "belongsTo",
+      "model": "Residence",
       "foreignKey": ""
     },
     "wasteCollections": {
       "type": "hasMany",
       "model": "WasteCollection",
-      "foreignKey": ""
-    },
-    "scales": {
-      "type": "hasMany",
-      "model": "Scale",
       "foreignKey": ""
     }
   },

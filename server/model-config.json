@@ -78,5 +78,21 @@
   "RecyclerCommunity": {
     "dataSource": "apidb",
     "public": true
+  },
+  "Bucket": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "WasteCollection": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Scale": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Composter": {
+    "dataSource": "apidb",
+    "public": true
   }
 }

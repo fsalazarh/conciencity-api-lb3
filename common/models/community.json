@@ -34,6 +34,11 @@
       "type": "hasMany",
       "model": "RecyclerCommunity",
       "foreignKey": ""
+    },
+    "composters": {
+      "type": "hasMany",
+      "model": "Composter",
+      "foreignKey": ""
     }
   },
   "acls": [],

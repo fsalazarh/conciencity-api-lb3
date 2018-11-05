@@ -1,0 +1,31 @@
+{
+  "name": "WasteCollection",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "weight": {
+      "type": "number"
+    },
+    "collectedAt": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bucket": {
+      "type": "belongsTo",
+      "model": "Bucket",
+      "foreignKey": ""
+    },
+    "recycler": {
+      "type": "belongsTo",
+      "model": "Recycler",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

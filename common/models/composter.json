@@ -1,19 +1,12 @@
 {
-  "name": "Residence",
-  "plural": "Residences",
-  "base": "user",
+  "name": "Composter",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "communityId": {
-      "type": "string"
-    },
-    "floor": {
-      "type": "string"
-    },
-    "number": {
+    "type": {
       "type": "string"
     }
   },
@@ -22,11 +15,6 @@
     "community": {
       "type": "belongsTo",
       "model": "Community",
-      "foreignKey": ""
-    },
-    "buckets": {
-      "type": "hasMany",
-      "model": "Bucket",
       "foreignKey": ""
     }
   },
