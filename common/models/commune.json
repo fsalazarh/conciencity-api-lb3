@@ -1,6 +1,6 @@
 {
   "name": "Commune",
-  "base": "PersistedModel",
+  "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true

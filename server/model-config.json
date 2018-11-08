@@ -94,5 +94,9 @@
   "Composter": {
     "dataSource": "apidb",
     "public": true
+  },
+  "CustomPersistedModel": {
+    "dataSource": "db",
+    "public": false
   }
 }

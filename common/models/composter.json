@@ -1,6 +1,6 @@
 {
   "name": "Composter",
-  "base": "PersistedModel",
+  "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true

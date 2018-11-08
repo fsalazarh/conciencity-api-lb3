@@ -1,6 +1,6 @@
 {
   "name": "RecyclerCommunity",
-  "base": "PersistedModel",
+  "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
