@@ -2,8 +2,10 @@
   "name": "user",
   "base": "User",
   "idInjection": true,
+  "strict": true,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "strictObjectIDCoercion": false
   },
   "properties": {
     "rut": {

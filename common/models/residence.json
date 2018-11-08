@@ -45,10 +45,21 @@
       "permission": "DENY"
     },
     {
-      "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW"
+      "principalId": "authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "find"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "owner",
+      "permission": "ALLOW",
+      "property": [
+        "findById",
+        "__get__community"
+      ]
     },
     {
       "principalType": "ROLE",

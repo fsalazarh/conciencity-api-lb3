@@ -41,6 +41,21 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "residenceAdmin",
+      "permission": "ALLOW",
+      "property": [
+        "findById",
+        "getSomething"
+      ]
+    }
+  ],
   "methods": {}
 }

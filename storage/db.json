@@ -1,0 +1,24 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "user": 1,
+    "CustomAccessToken": 2,
+    "CustomPersistedModel": 1
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "user": {},
+    "CustomAccessToken": {
+      "LUwgfclUE4gxjt685FNGgHv1nmsHYGT0Zf7TDBBdt8YPDkpDXjDDH2X03csGePBt": "{\"id\":\"LUwgfclUE4gxjt685FNGgHv1nmsHYGT0Zf7TDBBdt8YPDkpDXjDDH2X03csGePBt\",\"ttl\":1209600,\"created\":\"2018-11-08T21:49:28.455Z\",\"userId\":\"5be2f557a7242249c849782c\",\"principalType\":\"Residence\"}"
+    },
+    "CustomPersistedModel": {}
+  }
+}

@@ -4,12 +4,13 @@
   "strict": true,
   "idInjection": true,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "strictObjectIDCoercion": false
   },
   "forceId": true,
   "properties": {},
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": null,
   "methods": {}
 }

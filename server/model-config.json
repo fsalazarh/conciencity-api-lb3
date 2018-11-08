@@ -38,7 +38,7 @@
   },
   "user": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "OperationTeam": {
     "dataSource": "apidb",
