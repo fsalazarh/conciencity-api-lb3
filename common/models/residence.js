@@ -12,6 +12,8 @@ module.exports = function(Residence) {
                 relation: 'buckets',
                 scope: {
                     where: {residenceId: id},
+                    include: {
+                        relation: 'wasteCollections',
                         scope: {
                             limit: '4',
                             include: {
