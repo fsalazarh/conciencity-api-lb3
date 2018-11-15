@@ -18,7 +18,7 @@ module.exports = function(Server) {
 
   Role.registerResolver('authenticated', function(role, ctx, cb) {
     debug('ROLE:AUTHENTICATED')
-    debug(ctx['accessToken'])
+    debug('ACCESS TOKEN', ctx['accessToken'])
     if (ctx['accessToken']['id'] == '$anonymous') cb(null, false)
     else cb(null, true)
     return cb.promise
@@ -26,6 +26,7 @@ module.exports = function(Server) {
 
   Role.registerResolver('owner', function(role, ctx, cb) {
     debug('ROLE:', role)
+    debug(ctx)
     if (ctx.accessToken['id'] == '$anonymous') cb(null, false)
     else if (ctx.accessToken.principalType == ctx.modelName) {
       if (ctx.accessToken.userId == ctx.modelId) {

@@ -11,6 +11,7 @@ module.exports = function(Server) {
       if (!ctx.args.options) ctx.args.options = {};
       ctx.args.options['user'] = null;
       req = ctx.req;
+      //debug('REQ:', req);
       token = req.headers['Authorization'] ||
         req.headers['access_token'] || req.query['Authorization'] ||
         req.query['access_token'];

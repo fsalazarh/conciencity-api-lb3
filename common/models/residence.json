@@ -49,8 +49,8 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "find"
-      ]
+        "find",
+        "log"      ]
     },
     {
       "principalType": "ROLE",
@@ -58,7 +58,11 @@
       "permission": "ALLOW",
       "property": [
         "findById",
-        "__get__community"
+        "__get__community",
+        "__get__accessTokens",
+        "__findById__buckets",
+        "__get__buckets",
+        "getLastWasteCollection"
       ]
     },
     {

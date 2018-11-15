@@ -19,6 +19,6 @@
   },
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": null,
   "methods": {}
 }
