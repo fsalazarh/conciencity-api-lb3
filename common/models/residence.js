@@ -11,7 +11,6 @@ module.exports = function(Residence) {
             include:{
                 relation: 'buckets',
                 scope: {
-                    where: {residenceId: id},
                     include: {
                         relation: 'wasteCollections',
                         scope: {
@@ -28,7 +27,7 @@ module.exports = function(Residence) {
 
     Residence.remoteMethod('getLastWasteCollection', {
         accepts: {arg: 'id', type: 'string'},
-        returns: {arg: 'data', type: 'string'},
+        returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/getLastWasteCollection'}
     });
   };
