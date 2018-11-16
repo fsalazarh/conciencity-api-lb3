@@ -11,6 +11,12 @@
     },
     "address": {
       "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "dateCollection": {
+      "type": "string"
     }
   },
   "validations": [],
