@@ -20,7 +20,9 @@ module.exports = function(Server) {
     debug('ROLE:AUTHENTICATED')
     debug('ACCESS TOKEN', ctx['accessToken'])
     if (ctx['accessToken']['id'] == '$anonymous') cb(null, false)
-    else cb(null, true)
+    else if (ctx.modelName == ctx.accessToken.principalType){
+      cb(null, true)
+    } else cb(null, false)  
     return cb.promise
   })
 
@@ -29,7 +31,6 @@ module.exports = function(Server) {
     debug('ctx accessToken', ctx.accessToken)
     debug('ctx model name', ctx.modelName)
     debug('ctx user id', ctx.accessToken.userId)
-    debug(ctx)
     if (ctx.accessToken['id'] == '$anonymous') cb(null, false)
     else if (ctx.accessToken.principalType == ctx.modelName) {
       if (ctx.accessToken.userId == ctx.modelId) {
