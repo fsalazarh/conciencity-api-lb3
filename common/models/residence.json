@@ -49,8 +49,7 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "find",
-        "log"      
+        "find"     
       ]
     },
     {
@@ -63,7 +62,8 @@
         "__get__accessTokens",
         "__findById__buckets",
         "__get__buckets",
-        "getLastWasteCollection"
+        "getLastWasteCollection",
+        "getDateCollection"
       ]
     },
     {

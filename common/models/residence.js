@@ -30,4 +30,31 @@ module.exports = function(Residence) {
         returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/getLastWasteCollection'}
     });
-  };
+
+    /*Function that return the date of collection of his Community*/
+    Residence.getDateCollection = function(id, cb){
+        return Residence.find({
+            where: {
+                id: id
+            },
+            fields: {
+                floor : false,
+                number : false,
+                rut : false,
+                name : false,
+                username : false,
+                email : false,
+                id : false
+            },
+            include: {
+                relation: 'community'
+            }
+        })
+    };
+
+    Residence.remoteMethod('getDateCollection', {
+        accepts: {arg: 'id', type: 'string'},
+        returns: {arg: 'dateCollection', type: 'object'},
+        http: {verb: 'GET', path: '/:id/getDateCollection'}
+    });
+};
