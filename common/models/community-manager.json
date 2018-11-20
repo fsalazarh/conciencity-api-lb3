@@ -45,8 +45,17 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
-        "login",
-        "create"
+        "login"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "owner",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "__get__community",
+        "getResidencesCommunity"
       ]
     }
   ],
