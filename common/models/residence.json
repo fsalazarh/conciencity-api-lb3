@@ -32,8 +32,8 @@
       "model": "Community",
       "foreignKey": ""
     },
-    "buckets": {
-      "type": "hasMany",
+    "bucket": {
+      "type": "hasOne",
       "model": "Bucket",
       "foreignKey": ""
     }
