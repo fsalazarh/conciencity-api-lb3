@@ -21,7 +21,7 @@ module.exports = function(Community) {
           }
         ],
         returns: {arg: 'data', type: 'any', root: true},
-        http: {path: '/something', verb: 'get'}
+        http: {path: '/residences/totalWaste', verb: 'get'}
       }
     )
 };

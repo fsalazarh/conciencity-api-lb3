@@ -15,7 +15,8 @@
     "name": {
       "type": "string",
       "required": true
-    }
+    },
+    "realm": null
   },
   "validations": [],
   "relations": {},

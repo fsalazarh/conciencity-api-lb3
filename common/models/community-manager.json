@@ -55,7 +55,7 @@
       "property": [
         "find",
         "__get__community",
-        "wasteCommunity"
+        "__get__community__residences__totalWaste"
       ]
     }
   ],
