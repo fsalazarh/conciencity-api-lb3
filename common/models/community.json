@@ -12,6 +12,9 @@
     "address": {
       "type": "string"
     },
+    "floorsQuantity":{
+      "type": "number"
+    },
     "image": {
       "type": "string"
     },
@@ -60,6 +63,14 @@
       "property": [
         "findById",
         "getSomething"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "updateAttributes"
       ]
     }
   ],
