@@ -98,5 +98,17 @@
   "CustomPersistedModel": {
     "dataSource": "db",
     "public": false
+  },
+  "Slot": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Sensor": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "MeasurementSensor": {
+    "dataSource": "apidb",
+    "public": true
   }
 }
