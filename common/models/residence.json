@@ -33,7 +33,7 @@
       "foreignKey": ""
     },
     "bucket": {
-      "type": "hasOne",
+      "type": "embedsOne",
       "model": "Bucket",
       "foreignKey": ""
     }
@@ -49,7 +49,7 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "find"     
+        "logout"
       ]
     },
     {
