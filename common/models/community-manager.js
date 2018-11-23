@@ -96,4 +96,30 @@ module.exports = function(CommunityManager) {
         returns: {arg: 'data', type: 'object', root: true},
         http: {verb: 'GET', path: '/community/residences/totalWaste'}
     });
+
+
+
+    Model.prototype.__get__community__residences__totalByFloor = function(cb) {
+        let self = this
+        let communityId = utils.validId(self['communityId'])
+        Model.app.models['Residence'].find({
+            fields: ['floor'],
+            where: {
+                communityId : communityId
+            }
+        })
+        .then(function(res){
+            cb(null, res)
+        })
+        .catch(function(err) {
+            cb(err)
+            return null
+        })
+        return cb.promise
+    }
+
+    Model.remoteMethod('prototype.__get__community__residences__totalByFloor',{
+        returns: {arg: 'data', type: 'object', root: true},
+        http: {verb: 'GET', path: '/community/residences/totalWasteByFloor'}
+    })
 };

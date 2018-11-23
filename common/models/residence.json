@@ -33,7 +33,7 @@
       "foreignKey": ""
     },
     "bucket": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "Bucket",
       "foreignKey": ""
     }
@@ -72,6 +72,14 @@
       "permission": "ALLOW",
       "property": [
         "login"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "create"
       ]
     }
   ],
