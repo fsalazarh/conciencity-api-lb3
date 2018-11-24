@@ -9,7 +9,7 @@ module.exports = function(Residence) {
                 id: id
             },
             include:{
-                relation: 'buckets',
+                relation: 'bucket',
                 scope: {
                     include: {
                         relation: 'wasteCollections',
