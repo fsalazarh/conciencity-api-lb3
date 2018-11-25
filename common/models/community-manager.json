@@ -37,7 +37,6 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "find",
         "logout"
       ]
     },
@@ -57,7 +56,7 @@
         "findById",
         "__get__community",
         "__get__community__residences__totalWaste",
-        "__get__community__residences__totalByFloor"
+        "__get__community__residences__wasteByFloor"
       ]
     }
   ],

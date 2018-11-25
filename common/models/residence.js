@@ -16,7 +16,7 @@ module.exports = function(Residence) {
                         scope: {
                             limit: '4',
                             include: {
-                                relation: 'recycler'
+                                relation: 'recycler',
                             }
                         }
                     }

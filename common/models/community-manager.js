@@ -6,6 +6,8 @@ var utils = require('../../lib/utils');
 module.exports = function(CommunityManager) {
     var Model = CommunityManager
     var oneMonth = 30 * 24 * 60 * 60 * 1000;
+    var threeMonths = 30 * 24 * 60 * 60 * 1000 * 3;
+    var sixMonths =  30 * 24 * 60 * 60 * 1000 * 6;
 
     Model.prototype.__get__community__residences__totalWaste = function(cb) {
         let self = this
@@ -46,7 +48,7 @@ module.exports = function(CommunityManager) {
                     '3': {'date': '', 'total': 0},
                     '4': {'date': '', 'total': 0}
                 };
-
+                console.log(res)
                 for (var i=0; i<residences.length; i++){
                     var wasteCollections = residences[i].bucket.wasteCollections;
                     var auxDay = wasteCollections[0].collectedAt.getDate();
@@ -99,17 +101,61 @@ module.exports = function(CommunityManager) {
 
 
 
-    Model.prototype.__get__community__residences__totalByFloor = function(cb) {
+    Model.prototype.__get__community__residences__wasteByFloor = function(time, cb) {
         let self = this
         let communityId = utils.validId(self['communityId'])
+        let timeAgo = 0;
+        if (time == 1 ){
+            timeAgo = oneMonth
+        } 
+        else if (time == 3){
+            timeAgo = threeMonths
+        } 
+        else if (time == 6){
+            timeAgo = sixMonths
+        } 
+        else return cb(null, false)
+
         Model.app.models['Residence'].find({
-            fields: ['floor'],
+            fields: ['id', 'bucket', 'floor'],
             where: {
-                communityId : communityId
+                communityId: communityId
+            },
+            order: 'floor ASC',
+            include: {
+                relation: 'bucket',
+                scope: {
+                    fields: ['id', 'wasteCollections'],
+                    include: {
+                        relation: 'wasteCollections',
+                        scope: {
+                            fields: ['id', 'weight', 'collectedAt'],
+                            where: {collectedAt: {gt: Date.now() - timeAgo}},
+                            order: 'collectedAt DESC'
+                        } 
+                    }
+                }
             }
         })
         .then(function(res){
-            cb(null, res)
+            var jsonObj = [];
+            res.forEach(function(item) { 
+                let totalWeight = 0;
+                item = item.toJSON()
+                var floor = item['floor']
+                var weights = item['bucket']['wasteCollections'] //registros
+                weights.forEach(function(itemWeight){
+                    var weight = itemWeight['weight']
+                    totalWeight += weight
+                })
+                var item = {}
+                item ["floor"] = floor;
+                item ["totalWeights"] = totalWeight;
+            
+                jsonObj.push(item);
+            });
+            
+            cb(null, jsonObj)
         })
         .catch(function(err) {
             cb(err)
@@ -118,8 +164,9 @@ module.exports = function(CommunityManager) {
         return cb.promise
     }
 
-    Model.remoteMethod('prototype.__get__community__residences__totalByFloor',{
+    Model.remoteMethod('prototype.__get__community__residences__wasteByFloor',{
+        accepts: {arg: 'time', type: 'number'},
         returns: {arg: 'data', type: 'object', root: true},
-        http: {verb: 'GET', path: '/community/residences/totalWasteByFloor'}
+        http: {verb: 'GET', path: '/community/residences/wasteByFloor/:time'}
     })
 };
