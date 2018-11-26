@@ -27,12 +27,12 @@ module.exports = function(CommunityManager) {
                             fields: ['id', 'weight', 'collectedAt'],
                             where: {collectedAt: {gt: Date.now() - oneMonth}},
                             order: 'collectedAt DESC'
-                        } 
+                        }
                     }
                 }
             }
         })
-        .then(function(res){
+        .then(function(res){      
             if (!res) {
                 let error = new Error()
                 error.statusCode = 404
@@ -43,48 +43,51 @@ module.exports = function(CommunityManager) {
             } else {
                 let residences = res.map(item => {return item.toJSON()})
                 var collections = {
+                    '0': {'date': '', 'total': 0},
                     '1': {'date': '', 'total': 0},
                     '2': {'date': '', 'total': 0},
-                    '3': {'date': '', 'total': 0},
-                    '4': {'date': '', 'total': 0}
+                    '3': {'date': '', 'total': 0}
                 };
-                console.log(res)
-                for (var i=0; i<residences.length; i++){
-                    var wasteCollections = residences[i].bucket.wasteCollections;
-                    var auxDay = wasteCollections[0].collectedAt.getDate();
-                    collections['1'].date = wasteCollections[0].collectedAt
-                    var count = 0; //number of collection
+                let wasteCollections = []
+                residences.forEach(function(register){
+                    wasteCollections.push(register['bucket']['wasteCollections'])
+                })
+                wasteCollections = wasteCollections.flat() //reduce the complexity
+                wasteCollections.sortBy(function(o){ return -o.collectedAt }); //order by date
+                console.log('array', wasteCollections)
 
-                    for (var j=0; j<wasteCollections.length; j++){
-                        let day = wasteCollections[j].collectedAt.getDate();
-                        if(day == auxDay){
-                            if(count==0) collections['1'].total+= wasteCollections[j].weight
-                            else if(count==1) collections['2'].total+= wasteCollections[j].weight
-                            else if(count==2) collections['3'].total+= wasteCollections[j].weight
-                            else if(count==3) collections['4'].total+= wasteCollections[j].weight
+                collections['0'].date = wasteCollections[0].collectedAt 
+                let count = 0 //number of collection
+                let date = wasteCollections[0].collectedAt.getDate()
+                for(var i = 0; i<wasteCollections.length; i++){
+                    let dateAux = wasteCollections[i].collectedAt.getDate()
+                    if (dateAux == date){
+                        if(count==0) collections['0'].total += wasteCollections[i].weight
+                        else if(count==1) collections['1'].total += wasteCollections[i].weight
+                        else if(count==2) collections['2'].total += wasteCollections[i].weight
+                        else if(count==3) collections['3'].total += wasteCollections[i].weight
+                    }
+                    else{
+                        date = dateAux
+                        count += 1
+                        if(count==1) {
+                            collections['1'].date = wasteCollections[i].collectedAt
+                            collections['1'].total += wasteCollections[i].weight
                         }
-                        else{
-                            auxDay = wasteCollections[j].collectedAt.getDate();
-                            console.log('new auxDay = ', auxDay)
-                            count+=1;
-                            if(count==0) collections['1'].total+= wasteCollections[j].weight
-                            else if(count==1){
-                                collections['2'].date = wasteCollections[j].collectedAt 
-                                collections['2'].total+= wasteCollections[j].weight
-                            }
-                            else if(count==2){
-                                collections['3'].date = wasteCollections[j].collectedAt 
-                                collections['3'].total+= wasteCollections[j].weight
-                            }
-                            else if(count==3) {
-                                collections['4'].date = wasteCollections[j].collectedAt 
-                                collections['4'].total+= wasteCollections[j].weight
-                            }
-                        }
+                        else if(count==2){
+                            collections['2'].date = wasteCollections[i].collectedAt
+                            collections['2'].total += wasteCollections[i].weight
+                        } 
+                        else if(count==3){
+                            collections['3'].date = wasteCollections[i].collectedAt
+                            collections['3'].total += wasteCollections[i].weight
+                        } 
                     }
                 }
+                
+                }
                 cb(null, collections)
-            }
+            
             return null
         })
         .catch(function(err){
