@@ -62,7 +62,9 @@
       "principalId": "owner",
       "permission": "ALLOW",
       "property": [
-        "findById"
+        "findById",
+        "__get__recyclerCommunities",
+        "__get__community__composter_measurementsSensor"
       ]
     }
   ],

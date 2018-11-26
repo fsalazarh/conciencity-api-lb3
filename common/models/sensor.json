@@ -22,7 +22,7 @@
   },
   "validations": [],
   "relations": {
-    "measurementSensors": {
+    "measurementsSensor": {
       "type": "hasMany",
       "model": "MeasurementSensor",
       "foreignKey": ""
