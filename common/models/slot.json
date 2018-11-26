@@ -15,7 +15,33 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "sensor": {
+      "type": "hasOne",
+      "model": "Sensor",
+      "foreignKey": ""
+    },
+    "composter": {
+      "type": "belongsTo",
+      "model": "Composter",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [        
+        "__create__sensor",
+        "__get__sensor"
+      ]
+    }
+  ],
   "methods": {}
 }

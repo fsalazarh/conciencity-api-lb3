@@ -21,7 +21,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "measurementSensors": {
+      "type": "hasMany",
+      "model": "MeasurementSensor",
+      "foreignKey": ""
+    },
+    "slot": {
+      "type": "belongsTo",
+      "model": "Slot",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

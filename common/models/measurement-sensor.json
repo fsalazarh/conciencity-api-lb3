@@ -18,7 +18,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "sensor": {
+      "type": "belongsTo",
+      "model": "Sensor",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

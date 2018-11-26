@@ -16,8 +16,28 @@
       "type": "belongsTo",
       "model": "Community",
       "foreignKey": ""
+    },
+    "slots": {
+      "type": "hasOne",
+      "model": "Slot",
+      "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "__create__slots",
+        "__get__slots"
+      ]
+    }
+  ],
   "methods": {}
 }
