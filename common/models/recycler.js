@@ -19,7 +19,7 @@ module.exports = function(Recycler) {
                 scope: {
                     fields: ['id'],
                     include: {
-                        relation: 'composters',
+                        relation: 'composter',
                         scope: {
                             fields: ['id'],
                             include: {
@@ -33,9 +33,10 @@ module.exports = function(Recycler) {
                                             include: {
                                                 relation: 'measurementsSensor',
                                                 scope: {
-                                                    //fields: ['id', 'date', 'parameter'],
-                                                    where: {date: {gt: Date.now() - oneDay}},
-                                                    order: 'collectedAt DESC'
+                                                    fields: ['id', 'date', 'parameter', 'value'],
+                                                    //where: {date: {gt: Date.now() - oneDay}},
+                                                    order: 'collectedAt DESC',
+                                                    limit: 24
                                                 }
                                             }
                                         }
@@ -48,9 +49,14 @@ module.exports = function(Recycler) {
             }
         })
         .then(function(res){ 
-            //res = res.flat() 
-            console.log(res)    
-            cb(null, res)          
+            let measurementsJson = res.map(item => {return item.toJSON()})
+            let response = []
+            measurementsJson.forEach(function(item){
+                response.push(item.community.composter.slot.sensor.measurementsSensor)
+            })
+            response = response.flat()
+            console.log(response.length)
+            cb(null, response)          
             return null
         })
         .catch(function(err){

@@ -44,8 +44,8 @@
       "model": "RecyclerCommunity",
       "foreignKey": ""
     },
-    "composters": {
-      "type": "hasMany",
+    "composter": {
+      "type": "hasOne",
       "model": "Composter",
       "foreignKey": ""
     }
