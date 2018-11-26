@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint",
-    "dev": "nodemon server/server.js --watch common --watch server"
+    "dev": "SET DEBUG=loopback:log:security:role-resolver && nodemon server/server.js --watch common --watch server"
   },
   "dependencies": {
     "compression": "^1.0.3",

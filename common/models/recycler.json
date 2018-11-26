@@ -8,6 +8,17 @@
   "properties": {},
   "validations": [],
   "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "CustomAccessToken",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
+    },
     "recyclerCommunities": {
       "type": "hasMany",
       "model": "RecyclerCommunity",
