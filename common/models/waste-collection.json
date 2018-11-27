@@ -20,9 +20,9 @@
       "model": "Bucket",
       "foreignKey": ""
     },
-    "recycler": {
+    "scale": {
       "type": "belongsTo",
-      "model": "Recycler",
+      "model": "Scale",
       "foreignKey": ""
     }
   },

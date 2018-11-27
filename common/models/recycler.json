@@ -24,13 +24,8 @@
       "model": "RecyclerCommunity",
       "foreignKey": ""
     },
-    "wasteCollections": {
-      "type": "hasMany",
-      "model": "WasteCollection",
-      "foreignKey": ""
-    },
-    "scales": {
-      "type": "hasMany",
+    "scale": {
+      "type": "hasOne",
       "model": "Scale",
       "foreignKey": ""
     }
@@ -55,7 +50,8 @@
       "permission": "ALLOW",
       "property": [
         "logout",
-        "findById"
+        "findById",
+        "__get__scale"
       ]
     },
     {

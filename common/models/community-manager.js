@@ -132,9 +132,12 @@ module.exports = function(CommunityManager) {
                     include: {
                         relation: 'wasteCollections',
                         scope: {
-                            fields: ['id', 'weight', 'collectedAt'],
+                            fields: ['id', 'weight', 'collectedAt', 'recyclerId'],
                             where: {collectedAt: {gt: Date.now() - timeAgo}},
-                            order: 'collectedAt DESC'
+                            order: 'collectedAt DESC',
+                            include: {
+                                relation : 'recycler'
+                            }
                         } 
                     }
                 }
@@ -142,6 +145,9 @@ module.exports = function(CommunityManager) {
         })
         .then(function(res){
             var jsonObj = [];
+            let resJson = res[0].toJSON()
+            let recyclerName = resJson['bucket']['wasteCollections'][0]['recycler']['name']
+
             res.forEach(function(item) { 
                 let totalWeight = 0;
                 item = item.toJSON()
@@ -157,6 +163,9 @@ module.exports = function(CommunityManager) {
             
                 jsonObj.push(item);
             });
+            let item = {}
+            item ["recycler"] = recyclerName;
+            jsonObj.push(item); //add recyclerName
             
             cb(null, jsonObj)
         })
@@ -172,4 +181,5 @@ module.exports = function(CommunityManager) {
         returns: {arg: 'data', type: 'object', root: true},
         http: {verb: 'GET', path: '/community/residences/wasteByFloor/:time'}
     })
+
 };
