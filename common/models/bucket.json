@@ -1,26 +1,25 @@
 {
-  "name": "Commune",
+  "name": "Bucket",
   "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "location": {
-      "type": [
-        "number"
-      ]
+    "capacity": {
+      "type": "number"
     }
   },
   "validations": [],
   "relations": {
-    "communities": {
+    "residence": {
+      "type": "belongsTo",
+      "model": "Residence",
+      "foreignKey": ""
+    },
+    "wasteCollections": {
       "type": "hasMany",
-      "model": "Community",
+      "model": "WasteCollection",
       "foreignKey": ""
     }
   },

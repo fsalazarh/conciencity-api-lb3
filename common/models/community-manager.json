@@ -28,10 +28,36 @@
   },
   "acls": [
     {
-      "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW"
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "logout"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "login"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "owner",
+      "permission": "ALLOW",
+      "property": [
+        "findById",
+        "__get__community",
+        "__get__community__residences__totalWaste",
+        "__get__community__residences__wasteByFloor"
+      ]
     }
   ],
   "methods": {}

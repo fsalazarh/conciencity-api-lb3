@@ -1,0 +1,43 @@
+{
+  "name": "Composter",
+  "base": "CustomPersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "community": {
+      "type": "belongsTo",
+      "model": "Community",
+      "foreignKey": ""
+    },
+    "slot": {
+      "type": "hasOne",
+      "model": "Slot",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "__create__slots",
+        "__get__slots"
+      ]
+    }
+  ],
+  "methods": {}
+}

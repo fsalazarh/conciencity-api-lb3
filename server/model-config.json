@@ -38,7 +38,7 @@
   },
   "user": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "OperationTeam": {
     "dataSource": "apidb",
@@ -64,6 +64,50 @@
     "public": true
   },
   "Residence": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Conciencity": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Recycler": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "RecyclerCommunity": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Bucket": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "WasteCollection": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Scale": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Composter": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "CustomPersistedModel": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Slot": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Sensor": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "MeasurementSensor": {
     "dataSource": "apidb",
     "public": true
   }

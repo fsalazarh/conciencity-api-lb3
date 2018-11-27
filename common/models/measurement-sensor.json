@@ -1,0 +1,30 @@
+{
+  "name": "MeasurementSensor",
+  "plural": "MeasurementsSensor",
+  "base": "CustomPersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date"
+    },
+    "parameter": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sensor": {
+      "type": "belongsTo",
+      "model": "Sensor",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

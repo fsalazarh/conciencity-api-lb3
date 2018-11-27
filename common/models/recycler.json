@@ -1,19 +1,11 @@
 {
-  "name": "Residence",
-  "plural": "Residences",
-  "base": "user",
+  "name": "Recycler",
+  "base": "OperationTeam",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "floor": {
-      "type": "string"
-    },
-    "number": {
-      "type": "string"
-    }
-  },
+  "properties": {},
   "validations": [],
   "relations": {
     "accessTokens": {
@@ -27,14 +19,19 @@
         "disableInclude": true
       }
     },
-    "community": {
-      "type": "belongsTo",
-      "model": "Community",
+    "recyclerCommunities": {
+      "type": "hasMany",
+      "model": "RecyclerCommunity",
       "foreignKey": ""
     },
-    "bucket": {
-      "type": "hasOne",
-      "model": "Bucket",
+    "wasteCollections": {
+      "type": "hasMany",
+      "model": "WasteCollection",
+      "foreignKey": ""
+    },
+    "scales": {
+      "type": "hasMany",
+      "model": "Scale",
       "foreignKey": ""
     }
   },
@@ -46,28 +43,6 @@
     },
     {
       "principalType": "ROLE",
-      "principalId": "authenticated",
-      "permission": "ALLOW",
-      "property": [
-        "logout"
-      ]
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "owner",
-      "permission": "ALLOW",
-      "property": [
-        "findById",
-        "__get__community",
-        "__get__accessTokens",
-        "__findById__buckets",
-        "__get__buckets",
-        "getLastWasteCollection",
-        "getDateCollection"
-      ]
-    },
-    {
-      "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
@@ -76,10 +51,21 @@
     },
     {
       "principalType": "ROLE",
-      "principalId": "conciencity",
+      "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "create"
+        "logout",
+        "findById"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "owner",
+      "permission": "ALLOW",
+      "property": [
+        "findById",
+        "__get__recyclerCommunities",
+        "__get__community__composter_measurementsSensor"
       ]
     }
   ],

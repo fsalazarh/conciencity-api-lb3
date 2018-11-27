@@ -1,26 +1,20 @@
 {
-  "name": "Commune",
+  "name": "Scale",
   "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "location": {
-      "type": [
-        "number"
-      ]
+    "maxWeight": {
+      "type": "number"
     }
   },
   "validations": [],
   "relations": {
-    "communities": {
-      "type": "hasMany",
-      "model": "Community",
+    "recycler": {
+      "type": "belongsTo",
+      "model": "Recycler",
       "foreignKey": ""
     }
   },

@@ -8,11 +8,13 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint",
+    "dev": "SET DEBUG=loopback:log:security:role-resolver && nodemon server/server.js --watch common --watch server"
   },
   "dependencies": {
     "compression": "^1.0.3",
     "cors": "^2.5.2",
+    "debug": "^4.1.0",
     "helmet": "^3.10.0",
     "loopback": "^3.22.0",
     "loopback-boot": "^2.6.5",
@@ -23,7 +25,8 @@
   },
   "devDependencies": {
     "eslint": "^3.17.1",
-    "eslint-config-loopback": "^8.0.0"
+    "eslint-config-loopback": "^8.0.0",
+    "nodemon": "^1.18.5"
   },
   "repository": {
     "type": "",

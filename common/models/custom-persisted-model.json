@@ -1,0 +1,16 @@
+{
+  "name": "CustomPersistedModel",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "strictObjectIDCoercion": false
+  },
+  "forceId": true,
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": null,
+  "methods": {}
+}

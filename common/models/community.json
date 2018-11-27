@@ -1,6 +1,6 @@
 {
   "name": "Community",
-  "base": "PersistedModel",
+  "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -10,6 +10,15 @@
       "type": "string"
     },
     "address": {
+      "type": "string"
+    },
+    "floorsQuantity": {
+      "type": "number"
+    },
+    "image": {
+      "type": "string"
+    },
+    "dateCollection": {
       "type": "string"
     }
   },
@@ -29,8 +38,43 @@
       "type": "hasMany",
       "model": "Residence",
       "foreignKey": ""
+    },
+    "recyclers": {
+      "type": "hasMany",
+      "model": "RecyclerCommunity",
+      "foreignKey": ""
+    },
+    "composter": {
+      "type": "hasOne",
+      "model": "Composter",
+      "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "residenceAdmin",
+      "permission": "ALLOW",
+      "property": [
+        "findById",
+        "getSomething"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "updateAttributes",
+        "__get__composters",
+        "__create__composters"
+      ]
+    }
+  ],
   "methods": {}
 }

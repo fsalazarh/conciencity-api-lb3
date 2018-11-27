@@ -1,19 +1,11 @@
 {
-  "name": "Residence",
-  "plural": "Residences",
-  "base": "user",
+  "name": "Conciencity",
+  "base": "OperationTeam",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "floor": {
-      "type": "string"
-    },
-    "number": {
-      "type": "string"
-    }
-  },
+  "properties": {},
   "validations": [],
   "relations": {
     "accessTokens": {
@@ -26,16 +18,6 @@
       "options": {
         "disableInclude": true
       }
-    },
-    "community": {
-      "type": "belongsTo",
-      "model": "Community",
-      "foreignKey": ""
-    },
-    "bucket": {
-      "type": "hasOne",
-      "model": "Bucket",
-      "foreignKey": ""
     }
   },
   "acls": [
@@ -49,21 +31,8 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "logout"
-      ]
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "owner",
-      "permission": "ALLOW",
-      "property": [
-        "findById",
-        "__get__community",
-        "__get__accessTokens",
-        "__findById__buckets",
-        "__get__buckets",
-        "getLastWasteCollection",
-        "getDateCollection"
+        "logout",
+        "__post__residences"
       ]
     },
     {
@@ -76,11 +45,9 @@
     },
     {
       "principalType": "ROLE",
-      "principalId": "conciencity",
+      "principalId": "owner",
       "permission": "ALLOW",
-      "property": [
-        "create"
-      ]
+      "property": []
     }
   ],
   "methods": {}

@@ -1,0 +1,38 @@
+{
+  "name": "Sensor",
+  "plural": "Sensors",
+  "base": "CustomPersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "settings": {
+      "type": "object"
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "measurementsSensor": {
+      "type": "hasMany",
+      "model": "MeasurementSensor",
+      "foreignKey": ""
+    },
+    "slot": {
+      "type": "belongsTo",
+      "model": "Slot",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
