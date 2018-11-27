@@ -5,5 +5,5 @@ module.exports = function(Measurementsensor) {
     Model.beforeRemote('create', function(context, next) {
         context.args.data.sensorId = "5bfc1032c552a65208aedd82"
         next()
-      });
+    });
 };
