@@ -8,17 +8,26 @@ module.exports = function(Residence) {
             where: {
                 id: id
             },
+            fields: ['id', 'name', 'bucketId'],
             include:{
                 relation: 'bucket',
                 scope: {
+                    fields: ['id', 'wasteCollections'],
                     include: {
                         relation: 'wasteCollections',
                         scope: {
+                            fields: ['id', 'weight', 'collectedAt', 'scaleId'],
                             limit: '4',
                             include: {
                                 relation: 'scale',
                                 scope: {
-                                    relation: 'recycler'
+                                    fields: ['recyclerId'],
+                                    include: {
+                                        relation: 'recycler',
+                                        scope: {
+                                            fields: ['name']
+                                        }
+                                    }
                                 }
                             }
                         }
