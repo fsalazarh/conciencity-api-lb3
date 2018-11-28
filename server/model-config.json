@@ -110,5 +110,9 @@
   "MeasurementSensor": {
     "dataSource": "apidb",
     "public": true
+  },
+  "Notification": {
+    "dataSource": "apidb",
+    "public": true
   }
 }

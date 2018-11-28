@@ -28,6 +28,11 @@
       "type": "hasOne",
       "model": "Scale",
       "foreignKey": ""
+    },
+    "notifications": {
+      "type": "hasMany",
+      "model": "Notification",
+      "foreignKey": ""
     }
   },
   "acls": [
