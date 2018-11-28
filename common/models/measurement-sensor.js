@@ -7,8 +7,8 @@ module.exports = function(Measurementsensor) {
         context.args.data.date = new Date();
         context.args.data.sensorId = "5bfc1032c552a65208aedd82"
 
-        //Case 1: Extra Humidity
         if(context.args.data.parameter == "humidity")
+            //Case 1: Extra Humidity
             if(context.args.data.value > 0.8){
                 Model.app.models['Sensor'].findById(context.args.data.sensorId, {
                     include: {
@@ -57,6 +57,7 @@ module.exports = function(Measurementsensor) {
                     })
                 })
             }
+            //Case 1: Less Humidity
             else if(context.args.data.value < 0.6){
                 Model.app.models['Sensor'].findById(context.args.data.sensorId, {
                     include: {

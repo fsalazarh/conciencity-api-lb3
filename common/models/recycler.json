@@ -56,7 +56,8 @@
       "property": [
         "logout",
         "findById",
-        "__get__scale"
+        "__get__scale",
+        "__get__notifications"
       ]
     },
     {
