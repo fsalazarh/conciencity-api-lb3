@@ -67,7 +67,8 @@
       "property": [
         "findById",
         "__get__recyclerCommunities",
-        "__get__community__composter_measurementsSensor"
+        "__get__community__composter_measurementsSensor",
+        "__updateById__notifications"
       ]
     }
   ],
