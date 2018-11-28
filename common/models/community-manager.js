@@ -132,13 +132,19 @@ module.exports = function(CommunityManager) {
                     include: {
                         relation: 'wasteCollections',
                         scope: {
-                            fields: ['id', 'weight', 'collectedAt', 'recyclerId'],
+                            fields: ['id', 'weight', 'collectedAt', 'scaleId'],
                             where: {collectedAt: {gt: Date.now() - timeAgo}},
                             order: 'collectedAt DESC',
                             include: {
                                 relation : 'scale',
                                 scope: {
-                                    include: 'recycler'
+                                    fields: ['recyclerId'],
+                                    include: {
+                                        relation : 'recycler',
+                                        scope: {
+                                            fields: ['name']
+                                        }                                 
+                                    }
                                 }
                             }
                         } 
@@ -149,7 +155,8 @@ module.exports = function(CommunityManager) {
         .then(function(res){
             var jsonObj = [];
             let resJson = res[0].toJSON()
-            let recyclerName = resJson['bucket']['wasteCollections'][0]['recycler']['name']
+            console.log(resJson['bucket']['wasteCollections'][0])
+            let recyclerName = resJson['bucket']['wasteCollections'][0]['scale']['recycler']['name']
 
             res.forEach(function(item) { 
                 let totalWeight = 0;
