@@ -6,6 +6,9 @@
     "validateUpsert": true
   },
   "properties": {
+    "date": {
+      "type": "date"
+    },
     "code": {
       "type": "number"
     },
