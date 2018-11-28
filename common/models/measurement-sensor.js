@@ -9,7 +9,7 @@ module.exports = function(Measurementsensor) {
 
         //Case 1: Extra Humidity
         if(context.args.data.parameter == "humidity")
-            if(context.args.data.value > 0.7){
+            if(context.args.data.value > 0.8){
                 Model.app.models['Sensor'].findById(context.args.data.sensorId, {
                     include: {
                         relation: 'slot',
@@ -57,7 +57,45 @@ module.exports = function(Measurementsensor) {
                     })
                 })
             }
-        //next();
+            else if(context.args.data.value < 0.6){
+                Model.app.models['Sensor'].findById(context.args.data.sensorId, {
+                    include: {
+                        relation: 'slot',
+                        scope: {
+                            include: {
+                                relation: 'composter'
+                            }
+                        }
+                    }                  
+                })
+                .then(function(response) {
+                    response = response.toJSON()
+                    let communityId = response.slot.composter.communityId
+                    Model.app.models['RecyclerCommunity'].find({
+                        where: {
+                            communityId: communityId
+                        }
+                    })
+                    .then(function(response){
+                        let recyclersId = []
+                        response.forEach(function(item){
+                            recyclersId.push(item.recyclerId)
+                        })
+                        Model.app.models['Notification'].create(
+                            {
+                                date: new Date(),
+                                recyclerId: recyclersId[0],
+                                code: 1,
+                                description: 'Humedad demasiado baja',
+                                solve: false                           
+                            }
+                        )
+                    })
+                    .catch(function(err){
+                        return err
+                    })
+                })
+            }
+        next();
     });
-
 };
