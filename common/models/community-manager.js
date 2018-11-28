@@ -136,7 +136,10 @@ module.exports = function(CommunityManager) {
                             where: {collectedAt: {gt: Date.now() - timeAgo}},
                             order: 'collectedAt DESC',
                             include: {
-                                relation : 'recycler'
+                                relation : 'scale',
+                                scope: {
+                                    include: 'recycler'
+                                }
                             }
                         } 
                     }
