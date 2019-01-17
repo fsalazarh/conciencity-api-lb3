@@ -1,6 +1,6 @@
 {
-  "name": "CommunityManager",
-  "plural": "CommunityManagers",
+  "name": "Manager",
+  "plural": "Managers",
   "base": "user",
   "idInjection": true,
   "options": {
@@ -34,18 +34,18 @@
     },
     {
       "principalType": "ROLE",
-      "principalId": "authenticated",
-      "permission": "ALLOW",
-      "property": [
-        "logout"
-      ]
-    },
-    {
-      "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
         "login"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "logout"
       ]
     },
     {
@@ -56,7 +56,15 @@
         "findById",
         "__get__community",
         "__get__community__residences__totalWaste",
-        "__get__community__residences__wasteByFloor"
+        "__get__community__residences__wasteByFloor"  
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "create"
       ]
     }
   ],

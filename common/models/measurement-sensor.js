@@ -47,7 +47,7 @@ module.exports = function(Measurementsensor) {
                                     recyclerId: recyclersId[1],
                                     code: 2,
                                     description: 'Humedad demasiado alta',
-                                    solve: false                           
+                                    solve: false
                                 }
                             ]
                         )

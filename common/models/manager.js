@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require('debug')('loopback:log:models:community-manager');
+var debug = require('debug')('loopback:log:models:manager');
 var utils = require('../../lib/utils');
 
-module.exports = function(CommunityManager) {
-    var Model = CommunityManager
+module.exports = function(manager) {
+    var Model = manager
     var oneMonth = 30 * 24 * 60 * 60 * 1000;
     var threeMonths = 30 * 24 * 60 * 60 * 1000 * 3;
     var sixMonths =  30 * 24 * 60 * 60 * 1000 * 6;

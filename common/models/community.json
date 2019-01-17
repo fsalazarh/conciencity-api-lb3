@@ -31,7 +31,7 @@
     },
     "managers": {
       "type": "hasMany",
-      "model": "CommunityManager",
+      "model": "Manager",
       "foreignKey": ""
     },
     "residences": {

@@ -52,7 +52,7 @@
     "dataSource": "apidb",
     "public": true
   },
-  "CommunityManager": {
+  "Manager": {
     "dataSource": "apidb",
     "public": true,
     "options": {

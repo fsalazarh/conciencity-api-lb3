@@ -62,8 +62,8 @@
         "__get__accessTokens",
         "__findById__buckets",
         "__get__buckets",
-        "getLastWasteCollection",
-        "getDateCollection"
+        "lastWasteCollection",
+        "dateCollection"
       ]
     },
     {
