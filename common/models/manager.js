@@ -1,10 +1,10 @@
 'use strict';
 
-var debug = require('debug')('loopback:log:models:community-manager');
+var debug = require('debug')('loopback:log:models:manager');
 var utils = require('../../lib/utils');
 
-module.exports = function(CommunityManager) {
-    var Model = CommunityManager
+module.exports = function(manager) {
+    var Model = manager
     var oneMonth = 30 * 24 * 60 * 60 * 1000;
     var threeMonths = 30 * 24 * 60 * 60 * 1000 * 3;
     var sixMonths =  30 * 24 * 60 * 60 * 1000 * 6;
@@ -132,9 +132,21 @@ module.exports = function(CommunityManager) {
                     include: {
                         relation: 'wasteCollections',
                         scope: {
-                            fields: ['id', 'weight', 'collectedAt'],
+                            fields: ['id', 'weight', 'collectedAt', 'scaleId'],
                             where: {collectedAt: {gt: Date.now() - timeAgo}},
-                            order: 'collectedAt DESC'
+                            order: 'collectedAt DESC',
+                            include: {
+                                relation : 'scale',
+                                scope: {
+                                    fields: ['recyclerId'],
+                                    include: {
+                                        relation : 'recycler',
+                                        scope: {
+                                            fields: ['name']
+                                        }                                 
+                                    }
+                                }
+                            }
                         } 
                     }
                 }
@@ -142,6 +154,10 @@ module.exports = function(CommunityManager) {
         })
         .then(function(res){
             var jsonObj = [];
+            let resJson = res[0].toJSON()
+            console.log(resJson['bucket']['wasteCollections'][0])
+            let recyclerName = resJson['bucket']['wasteCollections'][0]['scale']['recycler']['name']
+
             res.forEach(function(item) { 
                 let totalWeight = 0;
                 item = item.toJSON()
@@ -157,6 +173,9 @@ module.exports = function(CommunityManager) {
             
                 jsonObj.push(item);
             });
+            let item = {}
+            item ["recycler"] = recyclerName;
+            jsonObj.push(item); //add recyclerName
             
             cb(null, jsonObj)
         })
@@ -172,4 +191,5 @@ module.exports = function(CommunityManager) {
         returns: {arg: 'data', type: 'object', root: true},
         http: {verb: 'GET', path: '/community/residences/wasteByFloor/:time'}
     })
+
 };

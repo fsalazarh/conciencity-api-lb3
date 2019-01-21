@@ -3,20 +3,32 @@
 module.exports = function(Residence) {
 
     /* Function that return the last 4 wasteCollections for user logged-in */
-    Residence.getLastWasteCollection = function(id, cb){
+    Residence.lastWasteCollection = function(id, cb){
         return Residence.find({
             where: {
                 id: id
             },
+            fields: ['id', 'name', 'bucketId'],
             include:{
                 relation: 'bucket',
                 scope: {
+                    fields: ['id', 'wasteCollections'],
                     include: {
                         relation: 'wasteCollections',
                         scope: {
+                            fields: ['id', 'weight', 'collectedAt', 'scaleId'],
                             limit: '4',
                             include: {
-                                relation: 'recycler',
+                                relation: 'scale',
+                                scope: {
+                                    fields: ['recyclerId'],
+                                    include: {
+                                        relation: 'recycler',
+                                        scope: {
+                                            fields: ['name']
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -25,14 +37,14 @@ module.exports = function(Residence) {
         })
     };
 
-    Residence.remoteMethod('getLastWasteCollection', {
+    Residence.remoteMethod('lastWasteCollection', {
         accepts: {arg: 'id', type: 'string'},
         returns: {arg: 'data', type: 'object'},
-        http: {verb: 'GET', path: '/:id/getLastWasteCollection'}
+        http: {verb: 'GET', path: '/:id/lastWasteCollection'}
     });
 
     /*Function that return the date of collection of his Community*/
-    Residence.getDateCollection = function(id, cb){
+    Residence.dateCollection = function(id, cb){
         return Residence.find({
             where: {
                 id: id
@@ -52,9 +64,9 @@ module.exports = function(Residence) {
         })
     };
 
-    Residence.remoteMethod('getDateCollection', {
+    Residence.remoteMethod('dateCollection', {
         accepts: {arg: 'id', type: 'string'},
         returns: {arg: 'dateCollection', type: 'object'},
-        http: {verb: 'GET', path: '/:id/getDateCollection'}
+        http: {verb: 'GET', path: '/:id/dateCollection'}
     });
 };

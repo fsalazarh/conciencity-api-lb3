@@ -31,8 +31,7 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "logout",
-        "__post__residences"
+        "logout"
       ]
     },
     {

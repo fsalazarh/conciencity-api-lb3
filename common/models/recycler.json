@@ -24,14 +24,14 @@
       "model": "RecyclerCommunity",
       "foreignKey": ""
     },
-    "wasteCollections": {
-      "type": "hasMany",
-      "model": "WasteCollection",
+    "scale": {
+      "type": "hasOne",
+      "model": "Scale",
       "foreignKey": ""
     },
-    "scales": {
+    "notifications": {
       "type": "hasMany",
-      "model": "Scale",
+      "model": "Notification",
       "foreignKey": ""
     }
   },
@@ -55,7 +55,9 @@
       "permission": "ALLOW",
       "property": [
         "logout",
-        "findById"
+        "findById",
+        "__get__scale",
+        "__get__notifications"
       ]
     },
     {
@@ -65,7 +67,8 @@
       "property": [
         "findById",
         "__get__recyclerCommunities",
-        "__get__community__composter_measurementsSensor"
+        "__get__community__composter_measurementsSensor",
+        "__updateById__notifications"
       ]
     }
   ],

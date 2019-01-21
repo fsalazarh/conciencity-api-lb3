@@ -31,7 +31,7 @@
     },
     "managers": {
       "type": "hasMany",
-      "model": "CommunityManager",
+      "model": "Manager",
       "foreignKey": ""
     },
     "residences": {
@@ -72,7 +72,8 @@
       "property": [
         "updateAttributes",
         "__get__composters",
-        "__create__composters"
+        "__create__composters",
+        "create"
       ]
     }
   ],

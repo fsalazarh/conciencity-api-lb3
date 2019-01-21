@@ -52,7 +52,7 @@
     "dataSource": "apidb",
     "public": true
   },
-  "CommunityManager": {
+  "Manager": {
     "dataSource": "apidb",
     "public": true,
     "options": {
@@ -108,6 +108,10 @@
     "public": true
   },
   "MeasurementSensor": {
+    "dataSource": "apidb",
+    "public": true
+  },
+  "Notification": {
     "dataSource": "apidb",
     "public": true
   }

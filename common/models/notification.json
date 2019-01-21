@@ -1,28 +1,29 @@
 {
-  "name": "WasteCollection",
+  "name": "Notification",
   "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "weight": {
+    "date": {
+      "type": "date"
+    },
+    "code": {
       "type": "number"
     },
-    "collectedAt": {
-      "type": "date"
+    "description": {
+      "type": "string"
+    },
+    "solve": {
+      "type": "Boolean"
     }
   },
   "validations": [],
   "relations": {
-    "bucket": {
+    "recycler": {
       "type": "belongsTo",
-      "model": "Bucket",
-      "foreignKey": ""
-    },
-    "scale": {
-      "type": "belongsTo",
-      "model": "Scale",
+      "model": "Recycler",
       "foreignKey": ""
     }
   },

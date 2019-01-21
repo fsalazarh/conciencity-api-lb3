@@ -35,7 +35,7 @@ module.exports = function(Recycler) {
                                                 scope: {
                                                     fields: ['id', 'date', 'parameter', 'value'],
                                                     //where: {date: {gt: Date.now() - oneDay}},
-                                                    order: 'collectedAt DESC',
+                                                    order: 'date DESC',
                                                     limit: 24
                                                 }
                                             }
