@@ -72,7 +72,8 @@
       "property": [
         "updateAttributes",
         "__get__composters",
-        "__create__composters"
+        "__create__composters",
+        "create"
       ]
     }
   ],

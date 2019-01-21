@@ -64,7 +64,10 @@
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
-        "create"
+        "create",
+        "read",
+        "update",
+        "delete"
       ]
     }
   ],
