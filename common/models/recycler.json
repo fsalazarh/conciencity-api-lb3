@@ -70,6 +70,14 @@
         "__get__community__composter_measurementsSensor",
         "__updateById__notifications"
       ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "find"
+      ]
     }
   ],
   "methods": {}

@@ -65,8 +65,8 @@
       "permission": "ALLOW",
       "property": [
         "create",
-        "read",
-        "update",
+        "find",
+        "prototype.patchAttributes",
         "delete"
       ]
     }

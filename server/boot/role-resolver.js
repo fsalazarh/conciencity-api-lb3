@@ -65,6 +65,7 @@ module.exports = function(Server) {
 
   Role.registerResolver('conciencity', function(role, ctx, cb){
     debug('ROLE:', role)
+    debug('principalType: ', ctx.accessToken.principalType)
     if (ctx.accessToken['id'] == '$anonymous') cb(null, false)
     else if (ctx.accessToken.principalType == 'Conciencity') {
       cb(null, true)
