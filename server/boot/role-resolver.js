@@ -73,7 +73,7 @@ module.exports = function(Server) {
     return cb.promise
   })
 
-  Role.registerResolver('Manager', function(role, ctx, cb){
+  Role.registerResolver('manager', function(role, ctx, cb){
     debug('ROLE:', role)
     if (ctx.accessToken['id'] == '$anonymous') cb(null, false)
     else if (ctx.accessToken.principalType == 'Manager') {
