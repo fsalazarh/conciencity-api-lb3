@@ -15,6 +15,11 @@
   },
   "validations": [],
   "relations": {
+    "residence": {
+      "type": "belongsTo",
+      "model": "Residence",
+      "foreignKey": ""
+    },
     "bucket": {
       "type": "belongsTo",
       "model": "Bucket",
