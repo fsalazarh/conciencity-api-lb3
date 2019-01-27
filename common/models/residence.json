@@ -36,6 +36,11 @@
       "type": "hasOne",
       "model": "Bucket",
       "foreignKey": ""
+    },
+    "wasteCollections": {
+      "type": "hasMany",
+      "model": "WasteCollection",
+      "foreignKey": ""
     }
   },
   "acls": [

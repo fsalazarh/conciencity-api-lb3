@@ -45,7 +45,7 @@
       "foreignKey": ""
     },
     "composter": {
-      "type": "hasOne",
+      "type": "embedsOne",
       "model": "Composter",
       "foreignKey": ""
     }
@@ -73,7 +73,8 @@
         "updateAttributes",
         "__get__composters",
         "__create__composters",
-        "create"
+        "create",
+        "find"
       ]
     }
   ],

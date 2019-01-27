@@ -40,10 +40,6 @@
     "dataSource": "db",
     "public": false
   },
-  "OperationTeam": {
-    "dataSource": "apidb",
-    "public": false
-  },
   "Commune": {
     "dataSource": "apidb",
     "public": true

@@ -25,7 +25,7 @@ module.exports = function(manager) {
                         relation: 'wasteCollections',
                         scope: {
                             fields: ['id', 'weight', 'collectedAt'],
-                            where: {collectedAt: {gt: Date.now() - oneMonth}},
+                            where: {collectedAt: {gt: Date.now() - sixMonths}},
                             order: 'collectedAt DESC'
                         }
                     }
@@ -50,11 +50,17 @@ module.exports = function(manager) {
                 };
                 let wasteCollections = []
                 residences.forEach(function(register){
-                    wasteCollections.push(register['bucket']['wasteCollections'])
+                    //console.log('LOG2: ', register)
+                    try{
+                        wasteCollections.push(register['bucket']['wasteCollections'])
+                    }
+                    catch(err){
+                        console.log('El residente no tiene asociado un balde')
+                    } 
                 })
                 wasteCollections = wasteCollections.flat() //reduce the complexity
                 wasteCollections.sortBy(function(o){ return -o.collectedAt }); //order by date
-                console.log('array', wasteCollections)
+                console.log('WasteCollections: ', wasteCollections)
 
                 collections['0'].date = wasteCollections[0].collectedAt 
                 let count = 0 //number of collection
@@ -162,20 +168,25 @@ module.exports = function(manager) {
                 let totalWeight = 0;
                 item = item.toJSON()
                 var floor = item['floor']
-                var weights = item['bucket']['wasteCollections'] //registros
-                weights.forEach(function(itemWeight){
-                    var weight = itemWeight['weight']
-                    totalWeight += weight
-                })
-                var item = {}
-                item ["floor"] = floor;
-                item ["totalWeights"] = totalWeight;
-            
-                jsonObj.push(item);
+                try{
+                    var weights = item['bucket']['wasteCollections'] //registros
+                    weights.forEach(function(itemWeight){
+                        var weight = itemWeight['weight']
+                        totalWeight += weight
+                    })
+                    var item = {}
+                    item ["floor"] = floor;
+                    item ["totalWeights"] = totalWeight;
+                
+                    jsonObj.push(item);
+                }
+                catch(error){
+                    console.log('no hay asociación de baldes para el residente')
+                }              
             });
             let item = {}
             item ["recycler"] = recyclerName;
-            jsonObj.push(item); //add recyclerName
+            jsonObj.push(item); //add recyclerName TODO: For multiples Recyclers
             
             cb(null, jsonObj)
         })
