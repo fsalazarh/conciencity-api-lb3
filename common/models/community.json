@@ -45,7 +45,7 @@
       "foreignKey": ""
     },
     "composter": {
-      "type": "hasOne",
+      "type": "embedsOne",
       "model": "Composter",
       "foreignKey": ""
     }

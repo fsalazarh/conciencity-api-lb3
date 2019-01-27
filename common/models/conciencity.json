@@ -1,6 +1,7 @@
 {
   "name": "Conciencity",
-  "base": "OperationTeam",
+  "plural": "Conciencity",
+  "base": "user",
   "idInjection": true,
   "options": {
     "validateUpsert": true

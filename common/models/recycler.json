@@ -1,6 +1,6 @@
 {
   "name": "Recycler",
-  "base": "OperationTeam",
+  "base": "user",
   "idInjection": true,
   "options": {
     "validateUpsert": true
