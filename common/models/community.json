@@ -73,7 +73,8 @@
         "updateAttributes",
         "__get__composters",
         "__create__composters",
-        "create"
+        "create",
+        "find"
       ]
     }
   ],
