@@ -1,9 +1,10 @@
 'use strict';
+var debug = require('debug')('loopback:log:models:residence');
+
 
 module.exports = function(Residence) {
-
     /* Function that return the last 4 wasteCollections for user logged-in */
-    Residence.lastWasteCollection = function(id, cb){
+    Residence.__get__lastFourWasteCollection = function(id, cb){
         return Residence.find({
             where: {
                 id: id
@@ -37,36 +38,45 @@ module.exports = function(Residence) {
         })
     };
 
-    Residence.remoteMethod('lastWasteCollection', {
+    Residence.remoteMethod('__get__lastFourWasteCollection', {
         accepts: {arg: 'id', type: 'string'},
         returns: {arg: 'data', type: 'object'},
-        http: {verb: 'GET', path: '/:id/lastWasteCollection'}
+        http: {verb: 'GET', path: '/:id/lastFourWasteCollection'}
     });
 
     /*Function that return the date of collection of his Community*/
-    Residence.dateCollection = function(id, cb){
-        return Residence.find({
+    Residence.__get__dateCollection = function(id, cb){
+        Residence.find({
+            fields: ['communityId'],
             where: {
                 id: id
             },
-            fields: {
-                floor : false,
-                number : false,
-                rut : false,
-                name : false,
-                username : false,
-                email : false,
-                id : false
-            },
             include: {
-                relation: 'community'
+                relation: 'community',
+                scope: {
+                    fields: ['name', 'dateCollection']
+                }
+            }
+        })
+        .then(function(res){
+            if(!res){
+                console.log('No hay resultados')
+                cb(null, false)
+            }
+            else {
+                let response = res.map(item => {return item.toJSON()})
+                let date = {
+                    "community": response[0]['community']['name'],
+                    "dateCollection": response[0]['community']['dateCollection']
+                }
+                cb(null, date)
             }
         })
     };
 
-    Residence.remoteMethod('dateCollection', {
+    Residence.remoteMethod('__get__dateCollection', {
         accepts: {arg: 'id', type: 'string'},
-        returns: {arg: 'dateCollection', type: 'object'},
+        returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/dateCollection'}
     });
 };

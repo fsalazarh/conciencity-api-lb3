@@ -35,7 +35,11 @@
       "permission": "ALLOW",
       "property": [
         "__create__slots",
-        "__get__slots"
+        "__get__slots",
+        "find",
+        "create",
+        "deleteById",
+        "patchAttributes"
       ]
     }
   ],

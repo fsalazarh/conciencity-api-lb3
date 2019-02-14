@@ -60,7 +60,7 @@ module.exports = function(manager) {
                 })
                 wasteCollections = wasteCollections.flat() //reduce the complexity
                 wasteCollections.sortBy(function(o){ return -o.collectedAt }); //order by date
-                console.log('WasteCollections: ', wasteCollections)
+                //console.log('WasteCollections: ', wasteCollections)
 
                 collections['0'].date = wasteCollections[0].collectedAt 
                 let count = 0 //number of collection
@@ -161,8 +161,8 @@ module.exports = function(manager) {
         .then(function(res){
             var jsonObj = [];
             let resJson = res[0].toJSON()
-            console.log(resJson['bucket']['wasteCollections'][0])
-            let recyclerName = resJson['bucket']['wasteCollections'][0]['scale']['recycler']['name']
+            debug(resJson)
+            //let recyclerName = resJson['bucket']['wasteCollections'][0]['scale']['recycler']['name']
 
             res.forEach(function(item) { 
                 let totalWeight = 0;
@@ -184,10 +184,10 @@ module.exports = function(manager) {
                     console.log('no hay asociación de baldes para el residente')
                 }              
             });
-            let item = {}
+            /*let item = {}
             item ["recycler"] = recyclerName;
             jsonObj.push(item); //add recyclerName TODO: For multiples Recyclers
-            
+*/
             cb(null, jsonObj)
         })
         .catch(function(err) {

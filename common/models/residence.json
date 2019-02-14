@@ -51,10 +51,19 @@
     },
     {
       "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": [
+        "login"
+      ]
+    },
+    {
+      "principalType": "ROLE",
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "logout"
+        "logout",
+        "changePassword"
       ]
     },
     {
@@ -64,19 +73,9 @@
       "property": [
         "findById",
         "__get__community",
-        "__get__accessTokens",
-        "__findById__buckets",
-        "__get__buckets",
-        "lastWasteCollection",
-        "dateCollection"
-      ]
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": [
-        "login"
+        "__get__bucket",
+        "__get__lastFourWasteCollection",
+        "__get__dateCollection"
       ]
     },
     {
@@ -84,8 +83,10 @@
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
+        "find",
         "create",
-        "find"
+        "deleteById",
+        "patchAttributes"
       ]
     }
   ],

@@ -23,6 +23,23 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "create",
+        "deleteById",
+        "patchAttributes"
+      ]
+    }
+  ],
   "methods": {}
 }
