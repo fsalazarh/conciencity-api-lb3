@@ -76,7 +76,10 @@
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
-        "find"
+        "find",
+        "create",
+        "deleteById",
+        "patchAttributes"
       ]
     }
   ],

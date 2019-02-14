@@ -64,10 +64,10 @@
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
-        "create",
         "find",
-        "patchAttributes",
-        "delete"
+        "create",
+        "deleteById",
+        "patchAttributes"
       ]
     }
   ],

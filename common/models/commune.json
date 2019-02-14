@@ -33,8 +33,9 @@
     {
       "principalType": "ROLE",
       "principalId":"conciencity",
-      "permission": ["ALLOW"],
+      "permission": "ALLOW",
       "property": [
+        "find",
         "create",
         "deleteById",
         "patchAttributes",
