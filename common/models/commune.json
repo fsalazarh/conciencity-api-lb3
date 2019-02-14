@@ -33,13 +33,14 @@
     {
       "principalType": "ROLE",
       "principalId":"conciencity",
-      "permission": [
+      "permission": ["ALLOW"],
+      "property": [
         "create",
-        "read",
-        "delete",
-        "update"
+        "deleteById",
+        "patchAttributes",
+        "__create__communities"
       ]
-    }
+     }
   ],
   "methods": {}
 }

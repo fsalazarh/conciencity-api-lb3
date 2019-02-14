@@ -58,23 +58,16 @@
     },
     {
       "principalType": "ROLE",
-      "principalId": "residenceAdmin",
-      "permission": "ALLOW",
-      "property": [
-        "findById",
-        "getSomething"
-      ]
-    },
-    {
-      "principalType": "ROLE",
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
-        "updateAttributes",
+        "find",
+        "patchAttributes",
+        "deleteById",
+        "__get__residences__wasteCollections",
         "__get__composters",
-        "__create__composters",
-        "create",
-        "find"
+        "__create__residences",
+        "__create__composters"
       ]
     }
   ],
