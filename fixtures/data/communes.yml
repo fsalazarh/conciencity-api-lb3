@@ -1,0 +1,27 @@
+Commune:
+  commune{1..10}:
+    name: "Comuna {@}"
+    location: "[{{address.latitude}}, {{address.longitude}}]" 
+
+Community:
+  community{1..30}:
+    name: "{{name.firstName}}"
+    address: "{{address.state}}"
+    floorsQuantity: "(function(){ return Math.floor((Math.random() * 100) + 1);})()"
+    image: "{{image.imageUrl}}"
+    dateCollection: "{{date.weekday}}"
+    communeId: @commune.*
+  
+Residence:
+  residence{1..10}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+    communityId: @community.*
+    floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+    number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+
+
+
+  

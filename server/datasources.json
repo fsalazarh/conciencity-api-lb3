@@ -12,5 +12,15 @@
     "name": "apidb",
     "user": "admin-conciencity",
     "connector": "mongodb"
+  },
+  "apidb-dev": {
+    "host": "ds239055.mlab.com",
+    "port": 39055,
+    "url": "",
+    "database": "conciencity-dev",
+    "password": "admin-conciencity1",
+    "name": "apidb-dev",
+    "user": "admin-conciencity",
+    "connector": "mongodb"
   }
 }

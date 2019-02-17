@@ -79,4 +79,7 @@ module.exports = function(Residence) {
         returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/dateCollection'}
     });
+
+    //Disable Remote Methods 
+    Residence.disableRemoteMethodByName('findOne');
 };
