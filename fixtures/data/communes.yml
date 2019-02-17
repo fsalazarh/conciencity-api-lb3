@@ -22,6 +22,35 @@ Residence:
     floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
     number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
 
+Manager:
+  manager{1..30}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+    communityId: @community{@}
+
+Recycler:
+  recycler{1..30}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+
+Conciencity:
+  conciencity:
+    rut: "18.465.675-2"
+    name: "Francisco Alberto Salazar Herrera"
+    email: "francisco@conciencity.cl"
+    password: "francisco"
+
+RecyclerCommunity:
+  recyclerCommunity{1..30}:
+    recyclerId: @recycler{@}
+    communityId: @community{@}
+    assignedAt: "{{date.past}}"
+    state: "{{lorem.word}}"
+    
 
 
   
