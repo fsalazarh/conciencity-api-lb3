@@ -13,7 +13,7 @@ Community:
     communeId: @commune.*
   
 Residence:
-  residence{1..10}:
+  residence{1..100}:
     rut: "{{random.hexaDecimal}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
@@ -51,6 +51,15 @@ RecyclerCommunity:
     assignedAt: "{{date.past}}"
     state: "{{lorem.word}}"
     
+Bucket:
+  bucket{1..100}:
+    residenceId: @residence{@}
+    capacity: "100"
+
+Scale:
+  scale{1..30}:
+    maxWeight: "200"
+    recyclerCommunityId: @recyclerCommunity{@}
 
 
   

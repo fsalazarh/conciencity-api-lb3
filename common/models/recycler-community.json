@@ -27,6 +27,11 @@
       "type": "belongsTo",
       "model": "Recycler",
       "foreignKey": ""
+    },
+    "scale": {
+      "type": "hasOne",
+      "model": "Scale",
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -6,6 +6,6 @@
   "loopback-fixtures": {
     "fixturePath": "/fixtures/data/",
     "append": false,
-    "autoLoad": true
+    "autoLoad": false
   }
 }
