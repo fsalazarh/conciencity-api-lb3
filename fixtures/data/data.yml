@@ -1,4 +1,4 @@
-Commune:
+  Commune:
   commune{1..10}:
     name: "Comuna {@}"
     location: "[{{address.latitude}}, {{address.longitude}}]" 
