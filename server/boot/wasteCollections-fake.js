@@ -1,5 +1,4 @@
 module.exports = function(app) {
-
     app.models.Community.find({
           include: [{recyclers: 'scale'},{residences:'bucket'}],
           fields: ['id']
@@ -9,10 +8,10 @@ module.exports = function(app) {
           communitiesJson.forEach(function(community){
                scaleId = community.recyclers[0].scale['id'] //First recycler 
 
-               /*Loop for residences of community*/
+               //Loop for residences of community
                community.residences.forEach(function(residences){
                     bucketId = residences.bucket['id']
-                    /*POST WasteCollection*/
+                    //POST WasteCollection
                     app.models.WasteCollection.create({
                          scaleId: scaleId,
                          bucketId: bucketId,

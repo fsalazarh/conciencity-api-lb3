@@ -5,7 +5,9 @@
   "options": {
     "validateUpsert": true
   },
-  "mixins": "Timestamp",
+  "mixins": {
+    "TimeStamp": true
+  },
   "properties": {
     "weight": {
       "type": "number"
