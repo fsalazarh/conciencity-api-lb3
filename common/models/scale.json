@@ -14,7 +14,7 @@
   "relations": {
     "recycler": {
       "type": "belongsTo",
-      "model": "Recycler",
+      "model": "RecyclerCommunity",
       "foreignKey": ""
     }
   },

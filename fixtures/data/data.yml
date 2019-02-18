@@ -1,0 +1,65 @@
+Commune:
+  commune{1..10}:
+    name: "Comuna {@}"
+    location: "[{{address.latitude}}, {{address.longitude}}]" 
+
+Community:
+  community{1..30}:
+    name: "{{name.firstName}}"
+    address: "{{address.state}}"
+    floorsQuantity: "(function(){ return Math.floor((Math.random() * 100) + 1);})()"
+    image: "{{image.imageUrl}}"
+    dateCollection: "{{date.weekday}}"
+    communeId: @commune.*
+  
+Residence:
+  residence{1..100}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+    communityId: @community.*
+    floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+    number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+
+Manager:
+  manager{1..30}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+    communityId: @community{@}
+
+Recycler:
+  recycler{1..30}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+
+Conciencity:
+  conciencity:
+    rut: "18.465.675-2"
+    name: "Francisco Alberto Salazar Herrera"
+    email: "francisco@conciencity.cl"
+    password: "francisco"
+
+RecyclerCommunity:
+  recyclerCommunity{1..30}:
+    recyclerId: @recycler{@}
+    communityId: @community{@}
+    assignedAt: "{{date.past}}"
+    state: "{{lorem.word}}"
+    
+Bucket:
+  bucket{1..100}:
+    residenceId: @residence{@}
+    capacity: "100"
+
+Scale:
+  scale{1..30}:
+    maxWeight: "200"
+    recyclerCommunityId: @recyclerCommunity{@}
+
+
+  
