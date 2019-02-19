@@ -41,15 +41,15 @@
     "public": false
   },
   "Commune": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Community": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Manager": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true,
     "options": {
       "emailVerificationRequired": true
@@ -60,35 +60,35 @@
     "public": false
   },
   "Residence": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Conciencity": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Recycler": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "RecyclerCommunity": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Bucket": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "WasteCollection": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Scale": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Composter": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "CustomPersistedModel": {
@@ -96,19 +96,19 @@
     "public": false
   },
   "Slot": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Sensor": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "MeasurementSensor": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   },
   "Notification": {
-    "dataSource": "apidb-dev",
+    "dataSource": "apidb",
     "public": true
   }
 }
