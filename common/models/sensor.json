@@ -11,10 +11,10 @@
       "type": "string"
     },
     "settings": {
-      "type": "object"
+      "type": "string"
     },
     "parameters": {
-      "type": "object"
+      "type": "string"
     },
     "description": {
       "type": "string"
