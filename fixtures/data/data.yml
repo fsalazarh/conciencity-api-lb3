@@ -26,9 +26,9 @@ Slot:
 Sensor:
   sensor{1..30}:
     slotId: @slot{@}
-    type: "{{random.word}}"
+    type: "{{lorem.word}}"
     parameters: "humidity"
-    description: "{{random.sentence}}"
+    description: "{{lorem.sentence}}"
   
 Residence:
   residence{1..100}:
@@ -63,6 +63,7 @@ Manager:
     email: "alonso@eco.cl"
     password: "alonso"
     communityId: @community30
+    emailVerified: "true"
 
 Recycler:
   recycler{1..29}:
