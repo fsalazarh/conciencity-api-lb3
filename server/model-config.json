@@ -57,7 +57,7 @@
   },
   "CustomAccessToken": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "Residence": {
     "dataSource": "apidb",

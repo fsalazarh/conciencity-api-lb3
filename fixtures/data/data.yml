@@ -1,0 +1,113 @@
+Commune:
+  commune{1..10}:
+    name: "Comuna {@}"
+    location: "[{{address.latitude}}, {{address.longitude}}]" 
+
+Community:
+  community{1..30}:
+    name: "{{name.firstName}}"
+    address: "{{address.state}}"
+    floorsQuantity: "(function(){ return Math.floor((Math.random() * 100) + 1);})()"
+    image: "{{image.imageUrl}}"
+    dateCollection: "{{date.weekday}}"
+    communeId: @commune.*
+
+Composter:
+  composter{1..30}:
+    communityId: @community{@}
+    type: "{{random.word}}"
+  
+Slot:
+  slot{1..30}:
+    composterId: @composter{@}
+    type: "{{random.word}}"
+    capacity: "100"
+
+Sensor:
+  sensor{1..30}:
+    slotId: @slot{@}
+    type: "{{lorem.word}}"
+    parameters: "humidity"
+    description: "{{lorem.sentence}}"
+  
+Residence:
+  residence{1..100}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+    communityId: @community.*
+    floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+    number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+  residence101:
+    rut: "{{random.hexaDecimal}}"
+    name: "Cris"
+    username: "Cris"
+    email: "cris@eco.cl"
+    password: "crisis"
+    communityId: @community.*
+    floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+    number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
+
+Manager:
+  manager{1..29}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+    communityId: @community{@}
+  manager30:    
+    rut: "123123123"
+    name: "alonso"
+    username: "alonso"
+    email: "alonso@eco.cl"
+    password: "alonso"
+    communityId: @community30
+    emailVerified: "true"
+
+Recycler:
+  recycler{1..29}:
+    rut: "{{random.hexaDecimal}}"
+    name: "{{name.firstName}} {{name.lastName}}"
+    email: "{{internet.email}}"
+    password: "{{internet.password}}"
+  recycler30:
+    rut: "123123123"
+    name: "reciclador"
+    username: "reciclador"
+    email: "reciclador@conciencity.cl"
+    password: "reciclador"
+    
+
+Conciencity:
+  conciencity:
+    rut: "18.465.675-2"
+    name: "Francisco Alberto Salazar Herrera"
+    username: "francisco"
+    email: "francisco@conciencity.cl"
+    password: "francisco"
+
+RecyclerCommunity:
+  recyclerCommunity{1..29}:
+    recyclerId: @recycler{@}
+    communityId: @community{@}
+    assignedAt: "{{date.past}}"
+    state: "{{lorem.word}}"
+  recyclerCommunity30:
+    recyclerId: @recycler30
+    communityId: @community30
+    assignedAt: "{{date.past}}"
+    state: "{{lorem.word}}"
+    
+Bucket:
+  bucket{1..101}:
+    residenceId: @residence{@}
+    capacity: "100"
+
+Scale:
+  scale{1..30}:
+    maxWeight: "200"
+    recyclerCommunityId: @recyclerCommunity{@}
+
+
+  

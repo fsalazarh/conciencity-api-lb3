@@ -24,9 +24,9 @@ module.exports = function(manager) {
                     include: {
                         relation: 'wasteCollections',
                         scope: {
-                            fields: ['id', 'weight', 'collectedAt'],
-                            where: {collectedAt: {gt: Date.now() - sixMonths}},
-                            order: 'collectedAt DESC'
+                            fields: ['id', 'weight', 'created'],
+                            where: {created: {gt: Date.now() - sixMonths}},
+                            order: 'created DESC'
                         }
                     }
                 }
@@ -59,14 +59,14 @@ module.exports = function(manager) {
                     } 
                 })
                 wasteCollections = wasteCollections.flat() //reduce the complexity
-                wasteCollections.sortBy(function(o){ return -o.collectedAt }); //order by date
+                wasteCollections.sortBy(function(o){ return -o.created }); //order by date
                 //console.log('WasteCollections: ', wasteCollections)
 
-                collections['0'].date = wasteCollections[0].collectedAt 
+                collections['0'].date = wasteCollections[0].created 
                 let count = 0 //number of collection
-                let date = wasteCollections[0].collectedAt.getDate()
+                let date = wasteCollections[0].created.getDate()
                 for(var i = 0; i<wasteCollections.length; i++){
-                    let dateAux = wasteCollections[i].collectedAt.getDate()
+                    let dateAux = wasteCollections[i].created.getDate()
                     if (dateAux == date){
                         if(count==0) collections['0'].total += wasteCollections[i].weight
                         else if(count==1) collections['1'].total += wasteCollections[i].weight
@@ -77,15 +77,15 @@ module.exports = function(manager) {
                         date = dateAux
                         count += 1
                         if(count==1) {
-                            collections['1'].date = wasteCollections[i].collectedAt
+                            collections['1'].date = wasteCollections[i].created
                             collections['1'].total += wasteCollections[i].weight
                         }
                         else if(count==2){
-                            collections['2'].date = wasteCollections[i].collectedAt
+                            collections['2'].date = wasteCollections[i].created
                             collections['2'].total += wasteCollections[i].weight
                         } 
                         else if(count==3){
-                            collections['3'].date = wasteCollections[i].collectedAt
+                            collections['3'].date = wasteCollections[i].created
                             collections['3'].total += wasteCollections[i].weight
                         } 
                     }
@@ -138,9 +138,9 @@ module.exports = function(manager) {
                     include: {
                         relation: 'wasteCollections',
                         scope: {
-                            fields: ['id', 'weight', 'collectedAt', 'scaleId'],
-                            where: {collectedAt: {gt: Date.now() - timeAgo}},
-                            order: 'collectedAt DESC',
+                            fields: ['id', 'weight', 'created', 'scaleId'],
+                            where: {created: {gt: Date.now() - timeAgo}},
+                            order: 'created DESC',
                             include: {
                                 relation : 'scale',
                                 scope: {
