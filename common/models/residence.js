@@ -17,7 +17,7 @@ module.exports = function(Residence) {
                     include: {
                         relation: 'wasteCollections',
                         scope: {
-                            fields: ['id', 'weight', 'collectedAt', 'scaleId'],
+                            fields: ['id', 'weight', 'created', 'scaleId'],
                             limit: '4',
                             include: {
                                 relation: 'scale',
