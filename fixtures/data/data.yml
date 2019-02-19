@@ -11,6 +11,24 @@ Community:
     image: "{{image.imageUrl}}"
     dateCollection: "{{date.weekday}}"
     communeId: @commune.*
+
+Composter:
+  composter{1..30}:
+    communityId: @community{@}
+    type: "{{random.word}}"
+  
+Slot:
+  slot{1..30}:
+    composterId: @composter{@}
+    type: "{{random.word}}"
+    capacity: "100"
+
+Sensor:
+  sensor{1..30}:
+    slotId: @slot{@}
+    type: "{{lorem.word}}"
+    parameters: "humidity"
+    description: "{{lorem.sentence}}"
   
 Residence:
   residence{1..100}:
@@ -45,6 +63,7 @@ Manager:
     email: "alonso@eco.cl"
     password: "alonso"
     communityId: @community30
+    emailVerified: "true"
 
 Recycler:
   recycler{1..29}:
