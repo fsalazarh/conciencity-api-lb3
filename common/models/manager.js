@@ -12,56 +12,49 @@ module.exports = function(manager) {
     Model.prototype.__get__community__residences__totalWaste = function(cb) {
         let self = this
         let communityId = utils.validId(self['communityId'])
-        Model.app.models['Residence'].find({
-            fields: ['id', 'bucket'],
+        let userId = utils.validId(self['id'])
+
+        Model.app.models['Manager'].find({
+            fields: ['id', 'communityId'],
             where: {
-                communityId: communityId
+                id: userId
             },
-            include: {
-                relation: 'bucket',
-                scope: {
-                    fields: ['id', 'wasteCollections'],
-                    include: {
-                        relation: 'wasteCollections',
-                        scope: {
-                            fields: ['id', 'weight', 'created'],
-                            where: {created: {gt: Date.now() - sixMonths}},
-                            order: 'created DESC'
-                        }
-                    }
-                }
-            }
+            include: {community: {residences: {bucket: 'wasteCollections'}}}
         })
         .then(function(res){      
             if (!res) {
                 let error = new Error()
                 error.statusCode = 404
                 error.code = 'RESIDENCES_NOT_FOUND'
-                error.name = 'Residences djhsgahjdjhaghjdghjaghjdghjaghjdghja with id ' + communityId + ' was not found'
+                error.name = 'Residences with id ' + communityId + ' was not found'
                 error.message = 'Community with id ' + communityId + ' was not found'
                 cb(error)
             } else {
-                let residences = res.map(item => {return item.toJSON()})
+                let response = res.map(item => {return item.toJSON()})
                 var collections = {
                     '0': {'date': '', 'total': 0},
                     '1': {'date': '', 'total': 0},
                     '2': {'date': '', 'total': 0},
                     '3': {'date': '', 'total': 0}
                 };
+                let residences = response[0].community.residences
                 let wasteCollections = []
-                residences.forEach(function(register){
-                    //console.log('LOG2: ', register)
+                residences.forEach(function(residence){
+                    let wastes = residence.bucket.wasteCollections
+                    debug('wastes: ', wastes)
                     try{
-                        wasteCollections.push(register['bucket']['wasteCollections'])
+                        wasteCollections.push(wastes)
                     }
                     catch(err){
                         console.log('El residente no tiene asociado un balde')
                     } 
                 })
+                debug('wasteCollectionsFinal: ', wasteCollections)
                 wasteCollections = wasteCollections.flat() //reduce the complexity
+                debug('wasteCollectionFlatted: ', wasteCollections)
                 wasteCollections.sortBy(function(o){ return -o.created }); //order by date
-                //console.log('WasteCollections: ', wasteCollections)
-
+                debug('wasteCollectionOrdered: ', wasteCollections)
+                
                 collections['0'].date = wasteCollections[0].created 
                 let count = 0 //number of collection
                 let date = wasteCollections[0].created.getDate()
@@ -90,7 +83,6 @@ module.exports = function(manager) {
                         } 
                     }
                 }
-                
                 }
                 cb(null, collections)
             
@@ -187,7 +179,7 @@ module.exports = function(manager) {
             /*let item = {}
             item ["recycler"] = recyclerName;
             jsonObj.push(item); //add recyclerName TODO: For multiples Recyclers
-*/
+            */
             cb(null, jsonObj)
         })
         .catch(function(err) {
