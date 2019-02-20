@@ -1,1 +1,1 @@
-web: node .
+web: set NODE_ENV=production && node .

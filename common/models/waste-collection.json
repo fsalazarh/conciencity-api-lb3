@@ -11,9 +11,6 @@
   "properties": {
     "weight": {
       "type": "number"
-    },
-    "collectedAt": {
-      "type": "date"
     }
   },
   "validations": [],

@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint",
-    "dev": "SET DEBUG=loopback:log:* && nodemon server/server.js --watch common --watch server"
+    "dev": "set DEBUG=loopback:log:* && nodemon . --ignore client/ --ignore storage/",
+    "create-waste-collections": "node scripts/create-waste-collections.js",
+    "create-measurement-sensor": "node scripts/create-measurement-sensor.js"
   },
   "dependencies": {
     "compression": "^1.0.3",
