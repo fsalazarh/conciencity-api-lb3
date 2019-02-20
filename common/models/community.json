@@ -69,6 +69,14 @@
         "__create__residences",
         "__create__composters"
       ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "manager",
+      "permission": "ALLOW",
+      "property": [
+        "__get__residences"
+      ]
     }
   ],
   "methods": {}
