@@ -1,7 +1,8 @@
 {
   "db": {
     "name": "db",
-    "connector": "memory"
+    "connector": "memory",
+    "file": "storage/default-db.json"
   },
   "apidb": {
     "host": "ds233500.mlab.com",
@@ -10,16 +11,6 @@
     "database": "conciencity",
     "password": "Conciencity_1",
     "name": "apidb",
-    "user": "admin-conciencity",
-    "connector": "mongodb"
-  },
-  "apidb-dev": {
-    "host": "ds239055.mlab.com",
-    "port": 39055,
-    "url": "",
-    "database": "conciencity-dev",
-    "password": "admin-conciencity1",
-    "name": "apidb-dev",
     "user": "admin-conciencity",
     "connector": "mongodb"
   }

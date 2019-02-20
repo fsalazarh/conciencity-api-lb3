@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint",
-    "dev": "SET DEBUG=loopback:log:* && nodemon server/server.js --watch common --watch server",
+    "dev": "nodemon . --ignore client/ --ignore storage/",
     "create-waste-collections": "node scripts/create-waste-collections.js"
   },
   "dependencies": {

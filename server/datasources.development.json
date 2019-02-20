@@ -3,5 +3,15 @@
     "name": "db",
     "connector": "memory",
     "file": "storage/db.json"
+  },
+  "apidb": {
+    "host": "ds239055.mlab.com",
+    "port": 39055,
+    "url": "",
+    "database": "conciencity-dev",
+    "password": "admin-conciencity1",
+    "name": "apidb",
+    "user": "admin-conciencity",
+    "connector": "mongodb"
   }
 }

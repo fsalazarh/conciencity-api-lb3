@@ -25,7 +25,7 @@ Community
     		bucketId: bucketId,
     		weight: (function(){ return Math.floor((Math.random() * 20) + 1);})()
     	}
-
+    	debug(data)
     	WasteCollection
     		.create(data)
     		.then(function(wasteCollection) {
