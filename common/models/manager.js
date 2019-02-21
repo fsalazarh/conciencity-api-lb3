@@ -9,12 +9,12 @@ module.exports = function(manager) {
     var threeMonths = 30 * 24 * 60 * 60 * 1000 * 3;
     var sixMonths =  30 * 24 * 60 * 60 * 1000 * 6;
 
-    Model.prototype.__get__community__residences__totalWaste = function(cb) {
+    Model.prototype.__get__community__totalWaste = function(cb) {
         let self = this
-        let communityId = utils.validId(self['communityId'])
-        let userId = utils.validId(self['id'])
+        let communityId = utils.validId(self['communityId']) //communityId
+        let userId = utils.validId(self['id']) //managerID
 
-        Model.app.models['Manager'].find({
+        Model.find({
             fields: ['id', 'communityId'],
             where: {
                 id: userId
@@ -41,7 +41,6 @@ module.exports = function(manager) {
                 let wasteCollections = []
                 residences.forEach(function(residence){
                     let wastes = residence.bucket.wasteCollections
-                    debug('wastes: ', wastes)
                     try{
                         wasteCollections.push(wastes)
                     }
@@ -49,25 +48,23 @@ module.exports = function(manager) {
                         console.log('El residente no tiene asociado un balde')
                     } 
                 })
-                debug('wasteCollectionsFinal: ', wasteCollections)
                 wasteCollections = wasteCollections.flat() //reduce the complexity
-                debug('wasteCollectionFlatted: ', wasteCollections)
                 wasteCollections.sortBy(function(o){ return -o.created }); //order by date
-                debug('wasteCollectionOrdered: ', wasteCollections)
                 
-                collections['0'].date = wasteCollections[0].created 
+                collections['0'].date = wasteCollections[0].created // 0 is the most recent collection
                 let count = 0 //number of collection
-                let date = wasteCollections[0].created.getDate()
-                for(var i = 0; i<wasteCollections.length; i++){
-                    let dateAux = wasteCollections[i].created.getDate()
-                    if (dateAux == date){
+                let date = wasteCollections[0].created.getDate() //get day of collection i.e: 21
+                
+                for(var i = 0; i<wasteCollections.length; i++){ 
+                    let dateAux = wasteCollections[i].created.getDate() 
+                    if (dateAux == date){ //sum data of same date collection
                         if(count==0) collections['0'].total += wasteCollections[i].weight
                         else if(count==1) collections['1'].total += wasteCollections[i].weight
                         else if(count==2) collections['2'].total += wasteCollections[i].weight
                         else if(count==3) collections['3'].total += wasteCollections[i].weight
                     }
                     else{
-                        date = dateAux
+                        date = dateAux //change date collection
                         count += 1
                         if(count==1) {
                             collections['1'].date = wasteCollections[i].created
@@ -84,8 +81,7 @@ module.exports = function(manager) {
                     }
                 }
                 }
-                cb(null, collections)
-            
+                cb(null, collections)          
             return null
         })
         .catch(function(err){
@@ -95,14 +91,14 @@ module.exports = function(manager) {
         return cb.promise;
     };
 
-    Model.remoteMethod('prototype.__get__community__residences__totalWaste', {
+    Model.remoteMethod('prototype.__get__community__totalWaste', {
         returns: {arg: 'data', type: 'object', root: true},
-        http: {verb: 'GET', path: '/community/residences/totalWaste'}
+        http: {verb: 'GET', path: '/community/totalWaste'}
     });
 
 
 
-    Model.prototype.__get__community__residences__wasteByFloor = function(time, cb) {
+    Model.prototype.__get__community__wasteByFloor = function(time, cb) {
         let self = this
         let communityId = utils.validId(self['communityId'])
         let timeAgo = 0;
@@ -118,7 +114,6 @@ module.exports = function(manager) {
         else return cb(null, false)
 
         Model.app.models['Residence'].find({
-            fields: ['id', 'bucket', 'floor'],
             where: {
                 communityId: communityId
             },
@@ -132,19 +127,7 @@ module.exports = function(manager) {
                         scope: {
                             fields: ['id', 'weight', 'created', 'scaleId'],
                             where: {created: {gt: Date.now() - timeAgo}},
-                            order: 'created DESC',
-                            include: {
-                                relation : 'scale',
-                                scope: {
-                                    fields: ['recyclerId'],
-                                    include: {
-                                        relation : 'recycler',
-                                        scope: {
-                                            fields: ['name']
-                                        }                                 
-                                    }
-                                }
-                            }
+                            order: 'created DESC'
                         } 
                     }
                 }
@@ -152,34 +135,32 @@ module.exports = function(manager) {
         })
         .then(function(res){
             var jsonObj = [];
-            let resJson = res[0].toJSON()
-            debug(resJson)
-            //let recyclerName = resJson['bucket']['wasteCollections'][0]['scale']['recycler']['name']
+            let floorAux = res[0].floor //first floor
 
-            res.forEach(function(item) { 
+            res.forEach(function(residence) { 
+                residence = residence.toJSON()
+                let floor = residence['floor'] //floor of residence
+
+                if(floor==floorAux) debug('Es el mismo piso...')
+                else{ 
+                    floorAux = floor //next floor
+                }
+                var item = {} 
+                item ["floor"] = floorAux
                 let totalWeight = 0;
-                item = item.toJSON()
-                var floor = item['floor']
                 try{
-                    var weights = item['bucket']['wasteCollections'] //registros
-                    weights.forEach(function(itemWeight){
-                        var weight = itemWeight['weight']
+                    var weights = residence['bucket']['wasteCollections'] //registers of wasteCollections 
+                    weights.forEach(function(itemWeight){ //register by register
+                        let weight = itemWeight['weight']
                         totalWeight += weight
                     })
-                    var item = {}
-                    item ["floor"] = floor;
                     item ["totalWeights"] = totalWeight;
-                
-                    jsonObj.push(item);
+                    jsonObj.push(item);         
                 }
                 catch(error){
                     console.log('no hay asociación de baldes para el residente')
                 }              
             });
-            /*let item = {}
-            item ["recycler"] = recyclerName;
-            jsonObj.push(item); //add recyclerName TODO: For multiples Recyclers
-            */
             cb(null, jsonObj)
         })
         .catch(function(err) {
@@ -189,10 +170,49 @@ module.exports = function(manager) {
         return cb.promise
     }
 
-    Model.remoteMethod('prototype.__get__community__residences__wasteByFloor',{
+    Model.remoteMethod('prototype.__get__community__wasteByFloor',{
         accepts: {arg: 'time', type: 'number'},
-        returns: {arg: 'data', type: 'object', root: true},
-        http: {verb: 'GET', path: '/community/residences/wasteByFloor/:time'}
+        returns: {arg: 'data', type: 'object', root: true}, 
+        http: {verb: 'GET', path: '/community/wasteByFloor/:time'}
+    })
+
+
+    Model.prototype.__get__community__statusComposter = function(cb) {
+        let self = this
+        let userId = utils.validId(self['id']) //managerID
+
+        Model.find({
+            fields: ['id', 'communityId'],
+            where: {
+                id: userId
+            },
+            include: {community: {composter: {slot: {sensor: 'measurementsSensor', order: 'created DESC', limit: 12}}}}
+        })
+        .then(function(res){       
+            if (!res) {
+                let error = new Error()
+                error.statusCode = 404
+                error.code = 'MANAGER_NOT_FOUND'
+                error.name = 'Manager with id ' + userId + ' was not found'
+                error.message = 'Manager with id ' + userId + ' was not found'
+                cb(error)
+            } else {
+                let response = res.map(item => {return item.toJSON()})
+                var measurementsSensor = response[0].community.composter.slot.sensor.measurementsSensor
+                debug('data: ', measurementsSensor)
+            }
+            cb(null, measurementsSensor)          
+        })
+        .catch(function(err){
+            cb(err)
+            return null
+        })
+        return cb.promise;
+    };
+
+    Model.remoteMethod('prototype.__get__community__statusComposter',{
+        returns: {arg: 'data', type: 'object', root: true}, 
+        http: {verb: 'GET', path: '/community/statusComposter'}
     })
 
 };

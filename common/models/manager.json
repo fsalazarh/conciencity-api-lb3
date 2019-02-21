@@ -55,8 +55,9 @@
       "property": [
         "findById",
         "__get__community",
-        "__get__community__residences__totalWaste",
-        "__get__community__residences__wasteByFloor"  
+        "__get__community__totalWaste",
+        "__get__community__wasteByFloor",
+        "__get__community__statusComposter"
       ]
     },
     {
