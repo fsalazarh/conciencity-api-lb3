@@ -186,7 +186,33 @@ module.exports = function(manager) {
             where: {
                 id: userId
             },
-            include: {community: {composter: {slot: {sensor: 'measurementsSensor', order: 'created DESC', limit: 12}}}}
+            include: {
+                relation: 'community',
+                scope: {
+                    include: {
+                        relation: 'composter',
+                        scope: {
+                            include: {
+                                relation: 'slot',
+                                scope: {
+                                    include: {
+                                        relation: 'sensor',
+                                        scope: {
+                                            include: {
+                                                relation: 'measurementsSensor',
+                                                scope: {
+                                                    order: 'created DESC',
+                                                    limit: 12
+                                                }                                              
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
         })
         .then(function(res){       
             if (!res) {
@@ -199,7 +225,7 @@ module.exports = function(manager) {
             } else {
                 let response = res.map(item => {return item.toJSON()})
                 var measurementsSensor = response[0].community.composter.slot.sensor.measurementsSensor
-                debug('data: ', measurementsSensor)
+                //debug('data: ', measurementsSensor)
             }
             cb(null, measurementsSensor)          
         })
