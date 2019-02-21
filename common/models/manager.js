@@ -138,7 +138,6 @@ module.exports = function(manager) {
             let floorAux = res[0].floor //first floor
 
             res.forEach(function(residence) { 
-                debug(residence)
                 residence = residence.toJSON()
                 let floor = residence['floor'] //floor of residence
 
@@ -152,7 +151,6 @@ module.exports = function(manager) {
                 try{
                     var weights = residence['bucket']['wasteCollections'] //registers of wasteCollections 
                     weights.forEach(function(itemWeight){ //register by register
-                        debug(itemWeight)
                         let weight = itemWeight['weight']
                         totalWeight += weight
                     })
@@ -176,6 +174,45 @@ module.exports = function(manager) {
         accepts: {arg: 'time', type: 'number'},
         returns: {arg: 'data', type: 'object', root: true}, 
         http: {verb: 'GET', path: '/community/wasteByFloor/:time'}
+    })
+
+
+    Model.prototype.__get__community__statusComposter = function(cb) {
+        let self = this
+        let userId = utils.validId(self['id']) //managerID
+
+        Model.find({
+            fields: ['id', 'communityId'],
+            where: {
+                id: userId
+            },
+            include: {community: {composter: {slot: {sensor: 'measurementsSensor', order: 'created DESC', limit: 12}}}}
+        })
+        .then(function(res){       
+            if (!res) {
+                let error = new Error()
+                error.statusCode = 404
+                error.code = 'MANAGER_NOT_FOUND'
+                error.name = 'Manager with id ' + userId + ' was not found'
+                error.message = 'Manager with id ' + userId + ' was not found'
+                cb(error)
+            } else {
+                let response = res.map(item => {return item.toJSON()})
+                var measurementsSensor = response[0].community.composter.slot.sensor.measurementsSensor
+                debug('data: ', measurementsSensor)
+            }
+            cb(null, measurementsSensor)          
+        })
+        .catch(function(err){
+            cb(err)
+            return null
+        })
+        return cb.promise;
+    };
+
+    Model.remoteMethod('prototype.__get__community__statusComposter',{
+        returns: {arg: 'data', type: 'object', root: true}, 
+        http: {verb: 'GET', path: '/community/statusComposter'}
     })
 
 };
