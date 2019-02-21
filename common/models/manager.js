@@ -9,12 +9,12 @@ module.exports = function(manager) {
     var threeMonths = 30 * 24 * 60 * 60 * 1000 * 3;
     var sixMonths =  30 * 24 * 60 * 60 * 1000 * 6;
 
-    Model.prototype.__get__community__residences__totalWaste = function(cb) {
+    Model.prototype.__get__community__totalWaste = function(cb) {
         let self = this
-        let communityId = utils.validId(self['communityId'])
-        let userId = utils.validId(self['id'])
+        let communityId = utils.validId(self['communityId']) //communityId
+        let userId = utils.validId(self['id']) //managerID
 
-        Model.app.models['Manager'].find({
+        Model.find({
             fields: ['id', 'communityId'],
             where: {
                 id: userId
@@ -41,7 +41,6 @@ module.exports = function(manager) {
                 let wasteCollections = []
                 residences.forEach(function(residence){
                     let wastes = residence.bucket.wasteCollections
-                    debug('wastes: ', wastes)
                     try{
                         wasteCollections.push(wastes)
                     }
@@ -49,25 +48,23 @@ module.exports = function(manager) {
                         console.log('El residente no tiene asociado un balde')
                     } 
                 })
-                debug('wasteCollectionsFinal: ', wasteCollections)
                 wasteCollections = wasteCollections.flat() //reduce the complexity
-                debug('wasteCollectionFlatted: ', wasteCollections)
                 wasteCollections.sortBy(function(o){ return -o.created }); //order by date
-                debug('wasteCollectionOrdered: ', wasteCollections)
                 
-                collections['0'].date = wasteCollections[0].created 
+                collections['0'].date = wasteCollections[0].created // 0 is the most recent collection
                 let count = 0 //number of collection
-                let date = wasteCollections[0].created.getDate()
-                for(var i = 0; i<wasteCollections.length; i++){
-                    let dateAux = wasteCollections[i].created.getDate()
-                    if (dateAux == date){
+                let date = wasteCollections[0].created.getDate() //get day of collection i.e: 21
+                
+                for(var i = 0; i<wasteCollections.length; i++){ 
+                    let dateAux = wasteCollections[i].created.getDate() 
+                    if (dateAux == date){ //sum data of same date collection
                         if(count==0) collections['0'].total += wasteCollections[i].weight
                         else if(count==1) collections['1'].total += wasteCollections[i].weight
                         else if(count==2) collections['2'].total += wasteCollections[i].weight
                         else if(count==3) collections['3'].total += wasteCollections[i].weight
                     }
                     else{
-                        date = dateAux
+                        date = dateAux //change date collection
                         count += 1
                         if(count==1) {
                             collections['1'].date = wasteCollections[i].created
@@ -84,8 +81,7 @@ module.exports = function(manager) {
                     }
                 }
                 }
-                cb(null, collections)
-            
+                cb(null, collections)          
             return null
         })
         .catch(function(err){
@@ -95,14 +91,14 @@ module.exports = function(manager) {
         return cb.promise;
     };
 
-    Model.remoteMethod('prototype.__get__community__residences__totalWaste', {
+    Model.remoteMethod('prototype.__get__community__totalWaste', {
         returns: {arg: 'data', type: 'object', root: true},
-        http: {verb: 'GET', path: '/community/residences/totalWaste'}
+        http: {verb: 'GET', path: '/community/totalWaste'}
     });
 
 
 
-    Model.prototype.__get__community__residences__wasteByFloor = function(time, cb) {
+    Model.prototype.__get__community__wasteByFloor = function(time, cb) {
         let self = this
         let communityId = utils.validId(self['communityId'])
         let timeAgo = 0;
@@ -189,10 +185,10 @@ module.exports = function(manager) {
         return cb.promise
     }
 
-    Model.remoteMethod('prototype.__get__community__residences__wasteByFloor',{
+    Model.remoteMethod('prototype.__get__community__wasteByFloor',{
         accepts: {arg: 'time', type: 'number'},
         returns: {arg: 'data', type: 'object', root: true},
-        http: {verb: 'GET', path: '/community/residences/wasteByFloor/:time'}
+        http: {verb: 'GET', path: '/community/wasteByFloor/:time'}
     })
 
 };
