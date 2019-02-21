@@ -114,7 +114,6 @@ module.exports = function(manager) {
         else return cb(null, false)
 
         Model.app.models['Residence'].find({
-            fields: ['id', 'bucket', 'floor'],
             where: {
                 communityId: communityId
             },
@@ -128,19 +127,7 @@ module.exports = function(manager) {
                         scope: {
                             fields: ['id', 'weight', 'created', 'scaleId'],
                             where: {created: {gt: Date.now() - timeAgo}},
-                            order: 'created DESC',
-                            include: {
-                                relation : 'scale',
-                                scope: {
-                                    fields: ['recyclerId'],
-                                    include: {
-                                        relation : 'recycler',
-                                        scope: {
-                                            fields: ['name']
-                                        }                                 
-                                    }
-                                }
-                            }
+                            order: 'created DESC'
                         } 
                     }
                 }
@@ -148,34 +135,34 @@ module.exports = function(manager) {
         })
         .then(function(res){
             var jsonObj = [];
-            let resJson = res[0].toJSON()
-            debug(resJson)
-            //let recyclerName = resJson['bucket']['wasteCollections'][0]['scale']['recycler']['name']
+            let floorAux = res[0].floor //first floor
 
-            res.forEach(function(item) { 
+            res.forEach(function(residence) { 
+                debug(residence)
+                residence = residence.toJSON()
+                let floor = residence['floor'] //floor of residence
+
+                if(floor==floorAux) debug('Es el mismo piso...')
+                else{ 
+                    floorAux = floor //next floor
+                }
+                var item = {} 
+                item ["floor"] = floorAux
                 let totalWeight = 0;
-                item = item.toJSON()
-                var floor = item['floor']
                 try{
-                    var weights = item['bucket']['wasteCollections'] //registros
-                    weights.forEach(function(itemWeight){
-                        var weight = itemWeight['weight']
+                    var weights = residence['bucket']['wasteCollections'] //registers of wasteCollections 
+                    weights.forEach(function(itemWeight){ //register by register
+                        debug(itemWeight)
+                        let weight = itemWeight['weight']
                         totalWeight += weight
                     })
-                    var item = {}
-                    item ["floor"] = floor;
                     item ["totalWeights"] = totalWeight;
-                
-                    jsonObj.push(item);
+                    jsonObj.push(item);         
                 }
                 catch(error){
                     console.log('no hay asociación de baldes para el residente')
                 }              
             });
-            /*let item = {}
-            item ["recycler"] = recyclerName;
-            jsonObj.push(item); //add recyclerName TODO: For multiples Recyclers
-            */
             cb(null, jsonObj)
         })
         .catch(function(err) {
@@ -187,7 +174,7 @@ module.exports = function(manager) {
 
     Model.remoteMethod('prototype.__get__community__wasteByFloor',{
         accepts: {arg: 'time', type: 'number'},
-        returns: {arg: 'data', type: 'object', root: true},
+        returns: {arg: 'data', type: 'object', root: true}, 
         http: {verb: 'GET', path: '/community/wasteByFloor/:time'}
     })
 
