@@ -67,7 +67,10 @@
         "__get__residences__wasteCollections",
         "__get__composters",
         "__create__residences",
-        "__create__composters"
+        "__create__composters",
+        "__get__residences",
+        "__get__managers",
+        "__get__recyclers"
       ]
     },
     {

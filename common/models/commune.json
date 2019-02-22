@@ -39,7 +39,8 @@
         "create",
         "deleteById",
         "patchAttributes",
-        "__create__communities"
+        "__create__communities",
+        "__get__communities"
       ]
      }
   ],
