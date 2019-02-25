@@ -39,7 +39,8 @@
       "permission": "ALLOW",
       "property": [        
         "__create__sensor",
-        "__get__sensor"
+        "__get__sensor",
+        "__get__sensor__measurementsSensor"
       ]
     }
   ],

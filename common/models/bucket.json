@@ -37,7 +37,8 @@
         "find",
         "create",
         "deleteById",
-        "patchAttributes"
+        "patchAttributes",
+        "__get__wasteCollections"
       ]
     }
   ],

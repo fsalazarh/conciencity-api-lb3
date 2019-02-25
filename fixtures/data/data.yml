@@ -48,8 +48,6 @@ Residence:
     communityId: @community.*
     floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
     number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
-    _bucket:
-        capacity: "100"
 
 Manager:
   manager{1..29}:

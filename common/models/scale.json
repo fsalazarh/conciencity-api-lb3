@@ -16,6 +16,11 @@
       "type": "belongsTo",
       "model": "RecyclerCommunity",
       "foreignKey": ""
+    },
+    "wasteCollections": {
+      "type": "hasMany",
+      "model": "WasteCollection",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -32,7 +37,8 @@
         "find",
         "create",
         "deleteById",
-        "patchAttributes"
+        "patchAttributes",
+        "__get__wasteCollections"
       ]
     }
   ],
