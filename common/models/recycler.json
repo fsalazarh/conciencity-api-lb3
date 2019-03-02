@@ -66,6 +66,7 @@
       "permission": "ALLOW",
       "property": [
         "findById",
+        "patchAttributes",
         "__get__recyclerCommunities",
         "__get__community__composter_measurementsSensor",
         "__updateById__notifications"

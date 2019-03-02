@@ -72,6 +72,7 @@
       "permission": "ALLOW",
       "property": [
         "findById",
+        "patchAttributes",
         "__get__community",
         "__get__bucket",
         "__get__lastFourWasteCollection",

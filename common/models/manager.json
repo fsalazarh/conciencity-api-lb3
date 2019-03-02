@@ -54,6 +54,7 @@
       "permission": "ALLOW",
       "property": [
         "findById",
+        "patchAttributes",
         "__get__community",
         "__get__community__totalWaste",
         "__get__community__wasteByFloor",
