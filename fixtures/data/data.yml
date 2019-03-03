@@ -21,7 +21,7 @@ Community:
     address: "{{address.state}}"
     floorsQuantity: "(function(){ return Math.floor((Math.random() * 100) + 1);})()"
     image: "{{image.imageUrl}}"
-    dateCollection: "{{date.weekday}}"
+    dateCollection: "{{date.weekday}} 11:00"
     communeId: @commune.*
 
 Composter:
