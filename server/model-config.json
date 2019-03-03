@@ -110,5 +110,9 @@
   "Notification": {
     "dataSource": "apidb",
     "public": true
+  },
+  "Provider": {
+    "dataSource": "apidb",
+    "public": true
   }
 }
