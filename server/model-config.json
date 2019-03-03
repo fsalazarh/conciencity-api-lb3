@@ -114,5 +114,9 @@
   "Provider": {
     "dataSource": "apidb",
     "public": true
+  },
+  "CommuneProvider": {
+    "dataSource": "apidb",
+    "public": true
   }
 }

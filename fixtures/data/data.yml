@@ -4,16 +4,16 @@ Commune:
     location: "[{{address.latitude}}, {{address.longitude}}]" 
 
 Provider:
-  provider{1..10}:
+  landfill{1..10}:
     communeId: @commune{@}
     type: "Landfill"
     name: "{{random.word}}"
     location: "[{{address.latitude}}, {{address.longitude}}]"  
-  provider{11..20}:
-    communeId: @commune.*
+  recollection{1..10}:
+    communeId: @commune{@}
     type: "Recollection"
     name: "{{random.word}}"
-    location: "[{{address.latitude}}, {{address.longitude}}]" 
+    location: "[{{address.latitude}}, {{address.longitude}}]"  
 
 Community:
   community{1..30}:

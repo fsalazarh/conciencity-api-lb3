@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(Wastecollection) {
-  var Model = Wastecollection
+ /* var Model = Wastecollection
   Model.observe('after save', function updateCollectionCount(ctx, next){
     if(ctx.instance){
       Model.findOne({
@@ -23,5 +23,5 @@ module.exports = function(Wastecollection) {
         )
       }      
     )}
-  })
+  })*/
 };

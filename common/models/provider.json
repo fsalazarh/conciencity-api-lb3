@@ -20,8 +20,8 @@
         "number"
       ]
     },
-    "contract": {
-      "type": "object"
+    "contact": {
+      "type": "array"
     }
   },
   "validations": [],
@@ -29,6 +29,11 @@
     "communes": {
       "type": "hasMany",
       "model": "Commune",
+      "foreignKey": ""
+    },
+    "communeProviders": {
+      "type": "hasMany",
+      "model": "CommuneProvider",
       "foreignKey": ""
     }
   },
