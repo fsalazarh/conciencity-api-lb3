@@ -21,16 +21,15 @@
       ]
     },
     "contact": {
-      "type": "array"
+      "type": {
+        "type": [
+          "string"
+        ]
+      }
     }
   },
   "validations": [],
   "relations": {
-    "communes": {
-      "type": "hasMany",
-      "model": "Commune",
-      "foreignKey": ""
-    },
     "communeProviders": {
       "type": "hasMany",
       "model": "CommuneProvider",
