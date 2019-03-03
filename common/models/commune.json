@@ -22,6 +22,11 @@
       "type": "hasMany",
       "model": "Community",
       "foreignKey": ""
+    },
+    "providers": {
+      "type": "hasMany",
+      "model": "Provider",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -32,7 +37,7 @@
     },
     {
       "principalType": "ROLE",
-      "principalId":"conciencity",
+      "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
         "find",
@@ -42,7 +47,7 @@
         "__create__communities",
         "__get__communities"
       ]
-     }
+    }
   ],
   "methods": {}
 }
