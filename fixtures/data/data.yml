@@ -1,6 +1,18 @@
 Commune:
   commune{1..10}:
-    name: "Comuna {@}"
+    name: "{{address.state}}"
+    location: "[{{address.latitude}}, {{address.longitude}}]" 
+
+Provider:
+  provider{1..10}:
+    communeId: @commune{@}
+    type: "Landfill"
+    name: "{{random.word}}"
+    location: "[{{address.latitude}}, {{address.longitude}}]"  
+  provider{11..20}:
+    communeId: @commune.*
+    type: "Recollection"
+    name: "{{random.word}}"
     location: "[{{address.latitude}}, {{address.longitude}}]" 
 
 Community:
@@ -32,7 +44,7 @@ Sensor:
 
 Residence:
   residence{1..100}:
-    rut: "{{random.hexaDecimal}}"
+    rut: "{{random.uuid}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
     password: "{{internet.password}}"
@@ -40,7 +52,7 @@ Residence:
     floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
     number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
   residence101:
-    rut: "{{random.hexaDecimal}}"
+    rut: "{{random.uuid}}"
     name: "Cris"
     username: "Cris"
     email: "cris@eco.cl"
@@ -51,7 +63,7 @@ Residence:
 
 Manager:
   manager{1..29}:
-    rut: "{{random.hexaDecimal}}"
+    rut: "{{random.uuid}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
     password: "{{internet.password}}"
@@ -67,7 +79,7 @@ Manager:
 
 Recycler:
   recycler{1..29}:
-    rut: "{{random.hexaDecimal}}"
+    rut: "{{random.uuid}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
     password: "{{internet.password}}"
