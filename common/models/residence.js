@@ -1,7 +1,6 @@
 'use strict';
 var debug = require('debug')('loopback:log:models:residence');
 
-
 module.exports = function(Residence) {
     /* Function that return the last 4 wasteCollections for user logged-in */
     Residence.__get__lastFourWasteCollection = function(id, cb){
@@ -79,6 +78,8 @@ module.exports = function(Residence) {
         returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/dateCollection'}
     });
+
+
 
     //Disable Remote Methods 
     Residence.disableRemoteMethodByName('findOne');

@@ -12,6 +12,10 @@
     },
     "number": {
       "type": "string"
+    },
+    "countCollection": {
+      "type": "number",
+      "default": 0
     }
   },
   "validations": [],
