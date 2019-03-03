@@ -1,46 +1,75 @@
 Commune:
   commune{1..10}:
-    name: "Comuna {@}"
+    name: "{{address.state}}"
     location: "[{{address.latitude}}, {{address.longitude}}]" 
 
+Provider:
+  landfill{1..10}:
+    type: "Landfill"
+    name: "{{random.word}}"
+    location: "[{{address.latitude}}, {{address.longitude}}]"  
+  recollection{1..10}:
+    communeId: @commune{@}
+    type: "Recollection"
+    name: "{{random.word}}"
+    location: "[{{address.latitude}}, {{address.longitude}}]" 
+
+CommuneProvider:
+  communeLandfill{1..10}:
+    communeId: @commune{@}
+    providerId: @landfill{@}
+    startContract: "{{date.recent}}"
+    endContract: "{{date.future}}"
+    amount: "{{commerce.price}}"
+    description: "{{lorem.sentence}}"
+    chargePeriod: "Monthly"
+  communeRecollection{1..10}:
+    communeId: @commune{@}
+    providerId: @recollection{@}
+    startContract: "{{date.recent}}"
+    endContract: "{{date.future}}"
+    amount: "{{commerce.price}}"
+    description: "{{lorem.sentence}}"
+    chargePeriod: "Monthly"
+
 Community:
-  community{1..30}:
+  community{1..10}:
     name: "{{name.firstName}}"
     address: "{{address.state}}"
     floorsQuantity: "(function(){ return Math.floor((Math.random() * 100) + 1);})()"
     image: "{{image.imageUrl}}"
-    dateCollection: "{{date.weekday}}"
-    communeId: @commune.*
+    dateCollection: "{{date.weekday}} 11:00"
+    communeId: @commune{@}
 
 Composter:
-  composter{1..30}:
+  composter{1..10}:
     communityId: @community{@}
     type: "{{random.word}}"
 
 Slot:
-  slot{1..30}:
+  slot{1..10}:
     composterId: @composter{@}
     type: "{{random.word}}"
     capacity: "100"
 
 Sensor:
-  sensor{1..30}:
+  sensor{1..10}:
     slotId: @slot{@}
     type: "{{lorem.word}}"
     parameters: "humidity"
     description: "{{lorem.sentence}}"
 
 Residence:
-  residence{1..100}:
-    rut: "{{random.hexaDecimal}}"
+  residence{1..99}:
+    rut: "{{random.uuid}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
     password: "{{internet.password}}"
     communityId: @community.*
     floor: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
     number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
-  residence101:
-    rut: "{{random.hexaDecimal}}"
+  residence100:
+    rut: "18.456.634-3"
     name: "Cris"
     username: "Cris"
     email: "cris@eco.cl"
@@ -50,28 +79,28 @@ Residence:
     number: "(function(){ return Math.floor((Math.random() * 10) + 1);})()"
 
 Manager:
-  manager{1..29}:
-    rut: "{{random.hexaDecimal}}"
+  manager{1..9}:
+    rut: "{{random.uuid}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
     password: "{{internet.password}}"
     communityId: @community{@}
-  manager30:    
+  manager10:    
     rut: "123123123"
     name: "alonso"
     username: "alonso"
     email: "alonso@eco.cl"
     password: "alonso"
-    communityId: @community30
+    communityId: @community10
     emailVerified: "true"
 
 Recycler:
-  recycler{1..29}:
-    rut: "{{random.hexaDecimal}}"
+  recycler{1..9}:
+    rut: "{{random.uuid}}"
     name: "{{name.firstName}} {{name.lastName}}"
     email: "{{internet.email}}"
     password: "{{internet.password}}"
-  recycler30:
+  recycler10:
     rut: "123123123"
     name: "reciclador"
     username: "reciclador"
@@ -87,23 +116,23 @@ Conciencity:
     password: "francisco"
 
 RecyclerCommunity:
-  recyclerCommunity{1..29}:
+  recyclerCommunity{1..9}:
     recyclerId: @recycler{@}
     communityId: @community{@}
     assignedAt: "{{date.past}}"
     state: "{{lorem.word}}"
-  recyclerCommunity30:
-    recyclerId: @recycler30
-    communityId: @community30
+  recyclerCommunity10:
+    recyclerId: @recycler10
+    communityId: @community10
     assignedAt: "{{date.past}}"
     state: "{{lorem.word}}"
 
 Bucket:
-  bucket{1..101}:
+  bucket{1..100}:
     residenceId: @residence{@}
     capacity: "100"
 
 Scale:
-  scale{1..30}:
+  scale{1..10}:
     maxWeight: "200"
     recyclerCommunityId: @recyclerCommunity{@}

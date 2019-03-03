@@ -25,7 +25,7 @@
     },
     "providers": {
       "type": "hasMany",
-      "model": "Provider",
+      "model": "CommuneProvider",
       "foreignKey": ""
     }
   },

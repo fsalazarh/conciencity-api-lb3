@@ -20,15 +20,19 @@
         "number"
       ]
     },
-    "contract": {
-      "type": "object"
+    "contact": {
+      "type": {
+        "type": [
+          "string"
+        ]
+      }
     }
   },
   "validations": [],
   "relations": {
-    "communes": {
+    "communeProviders": {
       "type": "hasMany",
-      "model": "Commune",
+      "model": "CommuneProvider",
       "foreignKey": ""
     }
   },

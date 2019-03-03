@@ -45,7 +45,8 @@
       "principalId": "authenticated",
       "permission": "ALLOW",
       "property": [
-        "logout"
+        "logout",
+        "changePassword"
       ]
     },
     {
