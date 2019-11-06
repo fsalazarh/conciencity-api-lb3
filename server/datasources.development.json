@@ -4,14 +4,14 @@
     "connector": "memory",
     "file": "storage/db.json"
   },
-  "apidb": {
-    "host": "ds239055.mlab.com",
-    "port": 39055,
-    "url": "",
+  "mongo": {
+    "host": "cluster0-feiy0.mongodb.net",
+    "url": "mongodb+srv://acciona:accionaadmin@cluster0-feiy0.mongodb.net",
     "database": "conciencity-dev",
-    "password": "admin-conciencity1",
-    "name": "apidb",
-    "user": "admin-conciencity",
+    "protocol": "mongodb+srv",
+    "name": "mongo",
+    "user": "acciona",
+    "password": "accionaadmin",
     "connector": "mongodb"
   }
 }
