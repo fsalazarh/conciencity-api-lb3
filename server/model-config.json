@@ -41,16 +41,16 @@
     "public": false
   },
   "Commune": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Community": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Manager": {
-    "dataSource": "apidb",
-    "public": true,
+    "dataSource": "mongo",
+    "public": false,
     "options": {
       "emailVerificationRequired": true
     }
@@ -60,63 +60,63 @@
     "public": false
   },
   "Residence": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "Conciencity": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "Recycler": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "RecyclerCommunity": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Bucket": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "WasteCollection": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Scale": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Composter": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "CustomPersistedModel": {
     "dataSource": "db",
     "public": false
   },
   "Slot": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Sensor": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "MeasurementSensor": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Notification": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Provider": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "CommuneProvider": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   }
 }

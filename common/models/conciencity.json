@@ -41,7 +41,8 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
-        "login"
+        "login",
+        "create"
       ]
     },
     {

@@ -8,13 +8,17 @@
     "strictObjectIDCoercion": false
   },
   "properties": {
-    "rut": {
-      "type": "string",
-      "required": true
-    },
     "name": {
       "type": "string",
       "required": true
+    },
+    "address": {
+        "type": "object",
+        "required": true
+    },
+    "phone": {
+        "type": "string",
+        "required": false
     },
     "realm": null
   },
