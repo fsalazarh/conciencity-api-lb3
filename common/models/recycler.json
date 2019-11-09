@@ -5,7 +5,13 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "active": {
+        "type": "Boolean",
+        "required": false,
+        "default": false
+      }
+  },
   "validations": [],
   "relations": {
     "accessTokens": {
@@ -47,6 +53,7 @@
       "permission": "ALLOW",
       "property": [
         "login",
+        "create",
         "changePassword"
       ]
     },
@@ -79,7 +86,6 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "create",
         "deleteById",
         "patchAttributes"
       ]
