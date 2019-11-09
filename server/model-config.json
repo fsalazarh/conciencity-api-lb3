@@ -44,10 +44,6 @@
     "dataSource": "mongo",
     "public": false
   },
-  "Community": {
-    "dataSource": "mongo",
-    "public": false
-  },
   "Manager": {
     "dataSource": "mongo",
     "public": false,
@@ -59,7 +55,7 @@
     "dataSource": "db",
     "public": false
   },
-  "Residence": {
+  "Resident": {
     "dataSource": "mongo",
     "public": true
   },
