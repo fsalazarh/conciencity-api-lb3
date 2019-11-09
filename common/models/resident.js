@@ -1,10 +1,10 @@
 'use strict';
-var debug = require('debug')('loopback:log:models:residence');
+var debug = require('debug')('loopback:log:models:Resident');
 
-module.exports = function(Residence) {
+module.exports = function(Resident) {
     /* Function that return the last 4 wasteCollections for user logged-in */
-    Residence.__get__lastFourWasteCollection = function(id, cb){
-        return Residence.find({
+    Resident.__get__lastFourWasteCollection = function(id, cb){
+        return Resident.find({
             where: {
                 id: id
             },
@@ -37,15 +37,15 @@ module.exports = function(Residence) {
         })
     };
 
-    Residence.remoteMethod('__get__lastFourWasteCollection', {
+    Resident.remoteMethod('__get__lastFourWasteCollection', {
         accepts: {arg: 'id', type: 'string'},
         returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/lastFourWasteCollection'}
     });
 
     /*Function that return the date of collection of his Community*/
-    Residence.__get__dateCollection = function(id, cb){
-        Residence.find({
+    Resident.__get__dateCollection = function(id, cb){
+        Resident.find({
             fields: ['communityId'],
             where: {
                 id: id
@@ -73,7 +73,7 @@ module.exports = function(Residence) {
         })
     };
 
-    Residence.remoteMethod('__get__dateCollection', {
+    Resident.remoteMethod('__get__dateCollection', {
         accepts: {arg: 'id', type: 'string'},
         returns: {arg: 'data', type: 'object'},
         http: {verb: 'GET', path: '/:id/dateCollection'}
@@ -82,5 +82,5 @@ module.exports = function(Residence) {
 
 
     //Disable Remote Methods 
-    Residence.disableRemoteMethodByName('findOne');
+    Resident.disableRemoteMethodByName('findOne');
 };

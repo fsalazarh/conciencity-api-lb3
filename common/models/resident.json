@@ -1,12 +1,17 @@
 {
-  "name": "Residence",
-  "plural": "Residences",
+  "name": "Resident",
+  "plural": "Residents",
   "base": "user",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
+    "active": {
+        "type": "Boolean",
+        "required": false, 
+        "default": false
+      }
   },
   "validations": [],
   "relations": {
@@ -43,7 +48,8 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
-        "login"
+        "login",
+        "create"
       ]
     },
     {
@@ -74,7 +80,6 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "create",
         "deleteById",
         "patchAttributes"
       ]
