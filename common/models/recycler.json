@@ -7,10 +7,10 @@
   },
   "properties": {
     "active": {
-        "type": "Boolean",
-        "required": false,
-        "default": false
-      }
+      "type": "Boolean",
+      "required": false,
+      "default": false
+    }
   },
   "validations": [],
   "relations": {

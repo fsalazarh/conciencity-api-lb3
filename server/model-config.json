@@ -90,5 +90,9 @@
   "Notification": {
     "dataSource": "mongo",
     "public": false
+  },
+  "Assignment": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

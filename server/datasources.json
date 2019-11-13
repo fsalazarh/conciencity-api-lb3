@@ -6,8 +6,8 @@
   },
   "mongo": {
     "url": "mongodb+srv://acciona:accionaadmin@cluster0-feiy0.mongodb.net/conciencity",
-    "protocol": "mongodb+srv",
     "name": "mongo",
+    "protocol": "mongodb+srv",
     "connector": "mongodb"
   }
 }

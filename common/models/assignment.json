@@ -1,40 +1,38 @@
 {
-  "name": "Bucket",
+  "name": "Assignment",
   "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "capacity": {
-      "type": "number"
+    "user_type": {
+      "type": "string",
+      "required": true
+    },
+    "user_id": {
+      "type": "string",
+      "required": true
+    },
+    "conciencity_id": {
+      "type": "string"
     },
     "active": {
-      "type": "Boolean",
-      "default": false
+      "type": "boolean",
+      "required": true,
+      "default": true
     },
     "created_at": {
       "type": "date",
-      "required": false
+      "required": true
     },
-    "assigned_at": {
+    "resolved_at": {
       "type": "date",
       "required": false
     }
   },
   "validations": [],
-  "relations": {
-    "residence": {
-      "type": "belongsTo",
-      "model": "Residence",
-      "foreignKey": ""
-    },
-    "wasteCollections": {
-      "type": "hasMany",
-      "model": "WasteCollection",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [
     {
       "principalType": "ROLE",
@@ -43,14 +41,18 @@
     },
     {
       "principalType": "ROLE",
+      "principalId": "residentOrRecycler",
+      "permission": "ALLOW",
+      "property": [
+        "create"
+      ]
+    },
+    {
+      "principalType": "ROLE",
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
-        "find",
-        "create",
-        "deleteById",
-        "patchAttributes",
-        "__get__wasteCollections"
+        "find"
       ]
     }
   ],

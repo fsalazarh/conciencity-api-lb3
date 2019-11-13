@@ -1,8 +1,8 @@
 {
   "name": "user",
   "base": "User",
-  "idInjection": true,
   "strict": true,
+  "idInjection": true,
   "options": {
     "validateUpsert": true,
     "strictObjectIDCoercion": false
@@ -25,10 +25,10 @@
       "required": true,
       "default": "$now"
     },
-    "realm": null
+    "realm": false
   },
   "validations": [],
   "relations": {},
-  "acls": null,
+  "acls": [],
   "methods": {}
 }

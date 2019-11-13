@@ -11,6 +11,6 @@
   "properties": {},
   "validations": [],
   "relations": {},
-  "acls": null,
+  "acls": [],
   "methods": {}
 }
