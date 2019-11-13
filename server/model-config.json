@@ -40,10 +40,6 @@
     "dataSource": "db",
     "public": false
   },
-  "Commune": {
-    "dataSource": "mongo",
-    "public": false
-  },
   "Manager": {
     "dataSource": "mongo",
     "public": false,
@@ -67,13 +63,9 @@
     "dataSource": "mongo",
     "public": true
   },
-  "RecyclerCommunity": {
-    "dataSource": "mongo",
-    "public": false
-  },
   "Bucket": {
     "dataSource": "mongo",
-    "public": false
+    "public": true
   },
   "WasteCollection": {
     "dataSource": "mongo",
@@ -81,18 +73,10 @@
   },
   "Scale": {
     "dataSource": "mongo",
-    "public": false
-  },
-  "Composter": {
-    "dataSource": "mongo",
-    "public": false
+    "public": true
   },
   "CustomPersistedModel": {
     "dataSource": "db",
-    "public": false
-  },
-  "Slot": {
-    "dataSource": "mongo",
     "public": false
   },
   "Sensor": {
@@ -104,14 +88,6 @@
     "public": false
   },
   "Notification": {
-    "dataSource": "mongo",
-    "public": false
-  },
-  "Provider": {
-    "dataSource": "mongo",
-    "public": false
-  },
-  "CommuneProvider": {
     "dataSource": "mongo",
     "public": false
   }

@@ -13,12 +13,17 @@
       "required": true
     },
     "address": {
-        "type": "object",
-        "required": false
+      "type": "object",
+      "required": false
     },
     "phone": {
-        "type": "string",
-        "required": false
+      "type": "string",
+      "required": false
+    },
+    "created_at": {
+      "type": "date",
+      "required": true,
+      "default": "$now"
     },
     "realm": null
   },

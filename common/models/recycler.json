@@ -25,13 +25,8 @@
         "disableInclude": true
       }
     },
-    "recyclerCommunities": {
-      "type": "hasMany",
-      "model": "RecyclerCommunity",
-      "foreignKey": ""
-    },
     "scale": {
-      "type": "hasOne",
+      "type": "embedsMany",
       "model": "Scale",
       "foreignKey": ""
     },

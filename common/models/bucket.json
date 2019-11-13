@@ -8,10 +8,22 @@
   "properties": {
     "capacity": {
       "type": "number"
+    },
+    "active": {
+      "type": "Boolean",
+      "default": false
+    },
+    "created_at": {
+      "type": "date",
+      "required": false
+    },
+    "assigned_at": {
+      "type": "date",
+      "required": false
     }
   },
   "validations": [],
-  "relations": {
+  "relations": { 
     "residence": {
       "type": "belongsTo",
       "model": "Residence",

@@ -27,9 +27,13 @@
       }
     },
     "bucket": {
-      "type": "hasOne",
+      "type": "embedsMany",
       "model": "Bucket",
-      "foreignKey": ""
+      "property": "Buckets",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
     },
     "wasteCollections": {
       "type": "hasMany",

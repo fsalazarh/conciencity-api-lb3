@@ -6,15 +6,24 @@
     "validateUpsert": true
   },
   "properties": {
-    "maxWeight": {
-      "type": "number"
+    "active": {
+      "type": "Boolean",
+      "default": false
+    },
+    "created_at": {
+      "type": "date",
+      "required": false
+    },
+    "assigned_at": {
+      "type": "date",
+      "required": false
     }
   },
   "validations": [],
   "relations": {
     "recycler": {
       "type": "belongsTo",
-      "model": "RecyclerCommunity",
+      "model": "Recycler",
       "foreignKey": ""
     },
     "wasteCollections": {
@@ -38,7 +47,8 @@
         "create",
         "deleteById",
         "patchAttributes",
-        "__get__wasteCollections"
+        "__get__wasteCollections",
+        "__assign__resident"
       ]
     }
   ],
