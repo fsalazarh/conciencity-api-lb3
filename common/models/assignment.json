@@ -53,7 +53,8 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "patchAttributes"
+        "patchAttributes",
+        "replaceById"
       ]
     }
   ],
