@@ -20,7 +20,7 @@
       "type": "string",
       "required": false
     },
-    "created_at": {
+    "createdAt": {
       "type": "date",
       "required": true,
       "default": "$now"

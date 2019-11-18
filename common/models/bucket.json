@@ -24,9 +24,9 @@
   },
   "validations": [],
   "relations": {
-    "residence": {
+    "resident": {
       "type": "belongsTo",
-      "model": "Residence",
+      "model": "Resident",
       "foreignKey": ""
     },
     "wasteCollections": {

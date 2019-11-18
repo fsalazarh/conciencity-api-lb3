@@ -29,16 +29,23 @@
     "bucket": {
       "type": "embedsMany",
       "model": "Bucket",
-      "property": "Buckets",
-      "options": {
-        "validate": true,
-        "forceId": false
-      }
+      "foreignKey": ""
     },
     "wasteCollections": {
       "type": "hasMany",
       "model": "WasteCollection",
       "foreignKey": ""
+    },
+    "assignments": {
+      "type": "hasMany",
+      "model": "Assignment",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "acls": [
@@ -62,7 +69,8 @@
       "permission": "ALLOW",
       "property": [
         "logout",
-        "changePassword"
+        "changePassword",
+        "__create__assignments"
       ]
     },
     {
