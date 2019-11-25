@@ -71,4 +71,41 @@ module.exports = function(Recycler) {
         http: {verb: 'GET', path: '/community/composter/slot/sensor/measurementsSensor'}
     });
 
+
+    /* Custom delete */
+    Recycler.customDelete = function(id, cb){
+      Recycler.findById(id, function(err, instance){
+        if(err){
+          cb(err);
+          return null;
+        }
+        const Recycler = instance;
+        //Check active of instance
+        if(Recycler.active == 'true'){
+          Recycler.updateAttributes({'active': false}, function(err, data){
+            if(err){
+              cb(err);
+              return null;
+            }
+            cb(data);
+          })
+        }
+        else{
+          let error = new Error()
+          error.statusCode = 409
+          error.code = 'USER_NOT_ACTIVE'
+          error.name = 'Recycler ' + Recycler.name + ' was already deleted'
+          error.message = 'Recycler ' + Recycler.name + ' is not active'
+          cb(error);
+        }
+      })
+    }
+
+    Recycler.remoteMethod('customDelete', {
+      accepts: {arg: 'id', type: 'string'},
+      return: {arg: 'data', type: 'object'},
+      http: {verb: 'DELETE', path: '/:id/customDelete'}
+    });
+
+
 };
