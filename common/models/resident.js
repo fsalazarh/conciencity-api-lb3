@@ -80,6 +80,40 @@ module.exports = function(Resident) {
     });
 
 
+    /* Custom delete */
+    Resident.customDelete = function(id, cb){
+      Resident.findById(id, function(err, instance){
+        if(err){
+          cb(err);
+          return null;
+        }
+        const resident = instance;
+        //Check active of instance
+        if(resident.active == 'true'){
+          resident.updateAttributes({'active': false}, function(err, data){
+            if(err){
+              cb(err);
+              return null;
+            }
+            cb(data);
+          })
+        }
+        else{
+          let error = new Error()
+          error.statusCode = 409
+          error.code = 'USER_NOT_ACTIVE'
+          error.name = 'Resident ' + resident.name + ' was already deleted'
+          error.message = 'Resident ' + resident.name + ' is not active'
+          cb(error);
+        }
+      })
+    }
+
+    Resident.remoteMethod('customDelete', {
+      accepts: {arg: 'id', type: 'string'},
+      return: {arg: 'data', type: 'object'},
+      http: {verb: 'DELETE', path: '/:id/customDelete'}
+    });
 
     //Disable Remote Methods 
     Resident.disableRemoteMethodByName('findOne');

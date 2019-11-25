@@ -26,7 +26,7 @@
       }
     },
     "scale": {
-      "type": "embedsMany",
+      "type": "hasOne",
       "model": "Scale",
       "foreignKey": ""
     },
@@ -72,7 +72,8 @@
         "findById",
         "__get__scale",
         "__get__notifications",
-        "__create__assignments"
+        "__create__assignments",
+        "__get__assignments"
       ]
     },
     {

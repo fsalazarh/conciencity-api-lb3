@@ -27,7 +27,7 @@
       }
     },
     "bucket": {
-      "type": "embedsMany",
+      "type": "hasOne",
       "model": "Bucket",
       "foreignKey": ""
     },
@@ -80,10 +80,8 @@
       "property": [
         "findById",
         "patchAttributes",
-        "__get__community",
-        "__get__bucket",
-        "__get__lastFourWasteCollection",
-        "__get__dateCollection"
+        "customDelete",
+        "__get__assignments"
       ]
     },
     {
@@ -92,7 +90,6 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "deleteById",
         "patchAttributes"
       ]
     }
