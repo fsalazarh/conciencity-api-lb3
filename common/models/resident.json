@@ -90,7 +90,9 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "patchAttributes"
+        "patchAttributes",
+        "__updateById__assignments",
+        "__get__bucket"
       ]
     }
   ],

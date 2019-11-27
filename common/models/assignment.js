@@ -10,18 +10,7 @@ module.exports = function(Assignment) {
 
     // Add fields to instance
     context.args.data["principalType"] = context.args.options.accessToken.principalType;
-
     next();
   });
 
-
-  Model.beforeRemote('prototype.patchAttributes', async (context, modelInstance, next) =>{
-    // Get Instance from Assignment collection
-    try{     
-
-    }
-    catch(e){
-      return e;
-    }
-  });
 };
