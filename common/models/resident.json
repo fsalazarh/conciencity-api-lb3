@@ -1,21 +1,16 @@
 {
-  "name": "Residence",
-  "plural": "Residences",
+  "name": "Resident",
+  "plural": "Residents",
   "base": "user",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "floor": {
-      "type": "string"
-    },
-    "number": {
-      "type": "string"
-    },
-    "countCollection": {
-      "type": "number",
-      "default": 0
+    "active": {
+      "type": "Boolean",
+      "required": false,
+      "default": false
     }
   },
   "validations": [],
@@ -31,11 +26,6 @@
         "disableInclude": true
       }
     },
-    "community": {
-      "type": "belongsTo",
-      "model": "Community",
-      "foreignKey": ""
-    },
     "bucket": {
       "type": "hasOne",
       "model": "Bucket",
@@ -45,6 +35,17 @@
       "type": "hasMany",
       "model": "WasteCollection",
       "foreignKey": ""
+    },
+    "assignments": {
+      "type": "hasMany",
+      "model": "Assignment",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "acls": [
@@ -58,7 +59,8 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
-        "login"
+        "login",
+        "create"
       ]
     },
     {
@@ -67,7 +69,8 @@
       "permission": "ALLOW",
       "property": [
         "logout",
-        "changePassword"
+        "changePassword",
+        "__create__assignments"
       ]
     },
     {
@@ -77,10 +80,8 @@
       "property": [
         "findById",
         "patchAttributes",
-        "__get__community",
-        "__get__bucket",
-        "__get__lastFourWasteCollection",
-        "__get__dateCollection"
+        "customDelete",
+        "__get__assignments"
       ]
     },
     {
@@ -89,9 +90,9 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "create",
-        "deleteById",
-        "patchAttributes"
+        "patchAttributes",
+        "__updateById__assignments",
+        "__get__bucket"
       ]
     }
   ],

@@ -40,17 +40,9 @@
     "dataSource": "db",
     "public": false
   },
-  "Commune": {
-    "dataSource": "apidb",
-    "public": true
-  },
-  "Community": {
-    "dataSource": "apidb",
-    "public": true
-  },
   "Manager": {
-    "dataSource": "apidb",
-    "public": true,
+    "dataSource": "mongo",
+    "public": false,
     "options": {
       "emailVerificationRequired": true
     }
@@ -59,64 +51,48 @@
     "dataSource": "db",
     "public": false
   },
-  "Residence": {
-    "dataSource": "apidb",
+  "Resident": {
+    "dataSource": "mongo",
     "public": true
   },
   "Conciencity": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "Recycler": {
-    "dataSource": "apidb",
-    "public": true
-  },
-  "RecyclerCommunity": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "Bucket": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "WasteCollection": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Scale": {
-    "dataSource": "apidb",
-    "public": true
-  },
-  "Composter": {
-    "dataSource": "apidb",
+    "dataSource": "mongo",
     "public": true
   },
   "CustomPersistedModel": {
     "dataSource": "db",
     "public": false
   },
-  "Slot": {
-    "dataSource": "apidb",
-    "public": true
-  },
   "Sensor": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "MeasurementSensor": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
   "Notification": {
-    "dataSource": "apidb",
-    "public": true
+    "dataSource": "mongo",
+    "public": false
   },
-  "Provider": {
-    "dataSource": "apidb",
-    "public": true
-  },
-  "CommuneProvider": {
-    "dataSource": "apidb",
+  "Assignment": {
+    "dataSource": "mongo",
     "public": true
   }
 }

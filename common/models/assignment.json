@@ -1,26 +1,41 @@
 {
-  "name": "Composter",
+  "name": "Assignment",
   "base": "CustomPersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "type": {
+    "userType": {
       "type": "string"
+    },
+    "conciencityId": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "createdAt": {
+      "type": "date",
+      "required": true,
+      "default": "$now"
+    },
+    "resolvedAt": {
+      "type": "date",
+      "required": false
     }
   },
   "validations": [],
   "relations": {
-    "community": {
+    "user": {
       "type": "belongsTo",
-      "model": "Community",
-      "foreignKey": ""
-    },
-    "slot": {
-      "type": "hasOne",
-      "model": "Slot",
-      "foreignKey": ""
+      "idName": "id",
+      "polymorphic": {
+        "idType": "string",
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      }
     }
   },
   "acls": [
@@ -34,11 +49,7 @@
       "principalId": "conciencity",
       "permission": "ALLOW",
       "property": [
-        "__create__slots",
-        "__get__slots",
         "find",
-        "create",
-        "deleteById",
         "patchAttributes"
       ]
     }

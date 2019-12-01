@@ -8,6 +8,7 @@ module.exports = function(Server) {
   Server.remotes().phases
     .addBefore('auth', 'options-from-request')
     .use(function(ctx, next) {
+      debug(ctx);
       if (!ctx.args.options) ctx.args.options = {};
       ctx.args.options['user'] = null;
       req = ctx.req;

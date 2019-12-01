@@ -5,13 +5,9 @@
     "file": "storage/default-db.json"
   },
   "mongo": {
-    "host": "cluster0-feiy0.mongodb.net",
-    "url": "mongodb+srv://acciona:accionaadmin@cluster0-feiy0.mongodb.net",
-    "database": "conciencity",
-    "protocol": "mongodb+srv",
+    "url": "mongodb+srv://acciona:accionaadmin@cluster0-feiy0.mongodb.net/conciencity",
     "name": "mongo",
-    "user": "acciona",
-    "password": "accionaadmin",
+    "protocol": "mongodb+srv",
     "connector": "mongodb"
   }
 }

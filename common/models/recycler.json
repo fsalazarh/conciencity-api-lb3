@@ -5,7 +5,13 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "active": {
+      "type": "Boolean",
+      "required": false,
+      "default": false
+    }
+  },
   "validations": [],
   "relations": {
     "accessTokens": {
@@ -19,11 +25,6 @@
         "disableInclude": true
       }
     },
-    "recyclerCommunities": {
-      "type": "hasMany",
-      "model": "RecyclerCommunity",
-      "foreignKey": ""
-    },
     "scale": {
       "type": "hasOne",
       "model": "Scale",
@@ -33,6 +34,17 @@
       "type": "hasMany",
       "model": "Notification",
       "foreignKey": ""
+    },
+    "assignments": {
+      "type": "hasMany",
+      "model": "Assignment",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "acls": [
@@ -47,6 +59,7 @@
       "permission": "ALLOW",
       "property": [
         "login",
+        "create",
         "changePassword"
       ]
     },
@@ -58,7 +71,9 @@
         "logout",
         "findById",
         "__get__scale",
-        "__get__notifications"
+        "__get__notifications",
+        "__create__assignments",
+        "__get__assignments"
       ]
     },
     {
@@ -70,7 +85,8 @@
         "patchAttributes",
         "__get__recyclerCommunities",
         "__get__community__composter_measurementsSensor",
-        "__updateById__notifications"
+        "__updateById__notifications",
+        "customDelete"
       ]
     },
     {
@@ -79,9 +95,9 @@
       "permission": "ALLOW",
       "property": [
         "find",
-        "create",
         "deleteById",
-        "patchAttributes"
+        "patchAttributes",
+        "__updateById__assignments"
       ]
     }
   ],
