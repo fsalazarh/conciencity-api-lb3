@@ -96,7 +96,8 @@
       "property": [
         "find",
         "deleteById",
-        "patchAttributes"
+        "patchAttributes",
+        "__updateById__assignments"
       ]
     }
   ],
