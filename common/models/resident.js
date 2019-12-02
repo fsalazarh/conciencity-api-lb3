@@ -176,7 +176,59 @@ module.exports = function(Resident) {
       }
       return next();
     }
-   })
+  })
+
+
+  /* Endpoint that add data to Resident */
+  Resident.__post__data = function(id, cb){
+    /*
+    Steps: 
+    1. findOrCreate RecolectionData with ResidentId 
+    2. Create register with:
+        - bucketId (for Resident)
+        - recyclerId (from context)
+        - scaleId (from scale active for recycler)
+        - registerAt (date now)
+        - weight : randon between 1 and 3 kg     
+    */ 
+    cb(null, id)
+  };
+
+  Resident.remoteMethod('__post__data', {
+      accepts: {arg: 'id', type: 'string'},
+      returns: {arg: 'data', type: 'object'},
+      http: {verb: 'POST', path: '/:id/data'}
+  });
+
+  Resident.beforeRemote('__post__data', async function(ctx) {
+    //1. Find or create recolectionData for Resident
+    let err, recolectionData;
+    [err, recolectionData] = await to(Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}));
+    //Find resident with his bucket
+    let resident;
+    [err, resident] = await to(Resident.find({where:{_id: ctx.args.id}, include: {relation: 'bucket'}}));
+    
+    let recycler;
+    [err, recycler] = await to(Model.app.models['Recycler'].find({where: {_id: ctx.args.options.user.id}, include: {relation: 'scale'}}));
+
+    //create data
+    let data;
+    [err, data] = await to(Model.app.models['Data'].create({
+      recolectionDataId: recolectionData[0].id,
+      recyclerId: recycler[0].id,
+      bucketId: resident[0].bucket.id,
+      scaleId: recycler[0].scale.id,
+      registedAt: new Date().toLocaleString(),
+      weight: Math.floor(Math.random() * 5) + 1 
+    }))
+    
+    // generate Data instance
+    // [err, data] = await to(Model.app.models['Data'].create({
+    //   recyclerId: ctx.req.accessToken.userId,
+    //   bucketId: await to(Model.app.models['Bucket'].find({where: }))
+    // }))
+  });
+  
 
   //Disable Remote Methods 
   Resident.disableRemoteMethodByName('findOne');

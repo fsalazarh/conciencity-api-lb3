@@ -1,0 +1,45 @@
+{
+  "name": "Data",
+  "base": "CustomPersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "bucketId": {
+      "type": "string"
+    },
+    "scaleId": {
+      "type": "string"
+    },
+    "registerAt": {
+      "type": "date"
+    },
+    "weight": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "recolectionData":{
+      "type": "belongsTo",
+      "model": "RecolectionData",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+      ]
+    }
+  ],
+  "methods": {}
+}

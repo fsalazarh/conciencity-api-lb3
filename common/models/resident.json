@@ -46,6 +46,11 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "recolectionData": {
+      "type": "hasMany",
+      "model": "RecolectionData",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -93,6 +98,14 @@
         "patchAttributes",
         "__updateById__assignments",
         "__get__bucket"
+      ]
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "recycler",
+      "permission": "ALLOW",
+      "property": [
+        "__post__data"
       ]
     }
   ],

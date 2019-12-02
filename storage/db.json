@@ -6,7 +6,7 @@
     "RoleMapping": 1,
     "Role": 1,
     "user": 1,
-    "CustomAccessToken": 99,
+    "CustomAccessToken": 100,
     "CustomPersistedModel": 1
   },
   "models": {
@@ -113,7 +113,8 @@
       "wCAl5jj5j4976AEOGRhALk08KzFiarpfVNbh9DqA145vaxZzs3vjDyTNAjRQ6Hm1": "{\"id\":\"wCAl5jj5j4976AEOGRhALk08KzFiarpfVNbh9DqA145vaxZzs3vjDyTNAjRQ6Hm1\",\"ttl\":1209600,\"created\":\"2019-12-01T18:51:23.521Z\",\"userId\":\"5dd518bd5162a54614c488fd\",\"principalType\":\"Resident\"}",
       "CSvkG8JO5zFU8zimWXPWr6kUK0nMDrvLViwoilgoChiNWCts5rVu6eH3zVgSyB4v": "{\"id\":\"CSvkG8JO5zFU8zimWXPWr6kUK0nMDrvLViwoilgoChiNWCts5rVu6eH3zVgSyB4v\",\"ttl\":1209600,\"created\":\"2019-12-01T18:53:42.231Z\",\"userId\":\"5dc2b59d5569d61848776f6d\",\"principalType\":\"Conciencity\"}",
       "rCTV3a3YUUhNFr2cSMKLHBnTiDGJ9o5keOBBY2xguTSk35BpDGwhhL8WhMtgPa7S": "{\"id\":\"rCTV3a3YUUhNFr2cSMKLHBnTiDGJ9o5keOBBY2xguTSk35BpDGwhhL8WhMtgPa7S\",\"ttl\":1209600,\"created\":\"2019-12-01T19:10:46.340Z\",\"userId\":\"5dc6b11786eada3c607e2092\",\"principalType\":\"Recycler\"}",
-      "1UCrIrReZIiRI0mGmMA9UAXi0HHDYyL7hyQHArqjRGwGHLPHDciZXqZO0Ntknrbz": "{\"id\":\"1UCrIrReZIiRI0mGmMA9UAXi0HHDYyL7hyQHArqjRGwGHLPHDciZXqZO0Ntknrbz\",\"ttl\":1209600,\"created\":\"2019-12-01T19:12:03.048Z\",\"userId\":\"5dc2b59d5569d61848776f6d\",\"principalType\":\"Conciencity\"}"
+      "1UCrIrReZIiRI0mGmMA9UAXi0HHDYyL7hyQHArqjRGwGHLPHDciZXqZO0Ntknrbz": "{\"id\":\"1UCrIrReZIiRI0mGmMA9UAXi0HHDYyL7hyQHArqjRGwGHLPHDciZXqZO0Ntknrbz\",\"ttl\":1209600,\"created\":\"2019-12-01T19:12:03.048Z\",\"userId\":\"5dc2b59d5569d61848776f6d\",\"principalType\":\"Conciencity\"}",
+      "AoFXl1GDSJbv83lkMniX3slOtkZi9tA6fzSYtGfEOfdktIQiLcZcd01D223dp8An": "{\"id\":\"AoFXl1GDSJbv83lkMniX3slOtkZi9tA6fzSYtGfEOfdktIQiLcZcd01D223dp8An\",\"ttl\":1209600,\"created\":\"2019-12-02T18:47:13.327Z\",\"userId\":\"5dc6b11786eada3c607e2092\",\"principalType\":\"Recycler\"}"
     },
     "CustomPersistedModel": {}
   }

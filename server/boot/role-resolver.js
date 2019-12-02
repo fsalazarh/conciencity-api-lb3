@@ -79,6 +79,16 @@ module.exports = function(Server) {
     return cb.promise
   })
 
+  Role.registerResolver('recycler', function(role, ctx, cb){
+    debug('ROLE:', role)
+    debug('principalType: ', ctx.accessToken.principalType)
+    if (ctx.accessToken['id'] == '$anonymous') cb(null, false)
+    else if (ctx.accessToken.principalType == 'Recycler') {
+      cb(null, true)
+    } else cb(null, false)
+    return cb.promise
+  })
+
   Role.registerResolver('manager', function(role, ctx, cb){
     debug('ROLE:', role)
     if (ctx.accessToken['id'] == '$anonymous') cb(null, false)

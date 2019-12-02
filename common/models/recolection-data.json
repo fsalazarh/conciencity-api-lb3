@@ -1,0 +1,45 @@
+{
+  "name": "RecolectionData",
+  "base": "CustomPersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+  },
+  "validations": [],
+  "relations": {
+    "resident": {
+      "type": "belongsTo",
+      "model": "Resident",
+      "foreignKey": ""
+    },
+    "recycler": {
+      "type": "belongsTo",
+      "model": "Recycler",
+      "foreignKey": ""
+    },
+    "data":{
+      "type": "embedsMany",
+      "model": "Data",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "patchAttributes"
+      ]
+    }
+  ],
+  "methods": {}
+}

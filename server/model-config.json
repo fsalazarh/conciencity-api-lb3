@@ -94,5 +94,13 @@
   "Assignment": {
     "dataSource": "mongo",
     "public": true
+  },
+  "RecolectionData": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Data": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
