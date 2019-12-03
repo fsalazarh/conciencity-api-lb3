@@ -100,7 +100,7 @@
     "public": true
   },
   "Data": {
-    "dataSource": "mongo",
-    "public": true
+    "dataSource": "transient",
+    "public": false
   }
 }

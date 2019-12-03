@@ -45,11 +45,6 @@
       "options": {
         "disableInclude": true
       }
-    },
-    "recolectionData": {
-      "type": "hasMany",
-      "model": "RecolectionData",
-      "foreignKey": ""
     }
   },
   "acls": [

@@ -4,6 +4,10 @@
     "connector": "memory",
     "file": "storage/db.json"
   },
+  "transient": {
+    "name": "transient",
+    "connector": "transient"
+  },
   "mongo": {
     "url": "mongodb+srv://acciona:accionaadmin@cluster0-feiy0.mongodb.net/conciencity-dev",
     "protocol": "mongodb+srv",

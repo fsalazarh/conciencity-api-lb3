@@ -203,30 +203,34 @@ module.exports = function(Resident) {
   Resident.beforeRemote('__post__data', async function(ctx) {
     //1. Find or create recolectionData for Resident
     let err, recolectionData;
-    [err, recolectionData] = await to(Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}));
+    // [err, recolectionData] = await to(Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}));
+    
     //Find resident with his bucket
     let resident;
-    [err, resident] = await to(Resident.find({where:{_id: ctx.args.id}, include: {relation: 'bucket'}}));
-    
+    [err, resident] = await to(Resident.findOne({where:{_id: ctx.args.id}, include: {relation: 'bucket'}}));
+    resident = resident.toJSON()
+    //Find recycler with his scale
     let recycler;
-    [err, recycler] = await to(Model.app.models['Recycler'].find({where: {_id: ctx.args.options.user.id}, include: {relation: 'scale'}}));
+    [err, recycler] = await to(Model.app.models['Recycler'].findOne({where: {_id: ctx.args.options.user.id}, include: {relation: 'scale'}}));
+    recycler = recycler.toJSON()
 
-    //create data
-    let data;
-    [err, data] = await to(Model.app.models['Data'].create({
-      recolectionDataId: recolectionData[0].id,
-      recyclerId: recycler[0].id,
-      bucketId: resident[0].bucket.id,
-      scaleId: recycler[0].scale.id,
-      registedAt: new Date().toLocaleString(),
+    let data = {
+      recyclerId: recycler.id,
+      bucketId: resident.bucket.id,
+      scaleId: recycler.scale.id,
+      registerAt: new Date().toLocaleString(),
       weight: Math.floor(Math.random() * 5) + 1 
-    }))
-    
-    // generate Data instance
-    // [err, data] = await to(Model.app.models['Data'].create({
-    //   recyclerId: ctx.req.accessToken.userId,
-    //   bucketId: await to(Model.app.models['Bucket'].find({where: }))
-    // }))
+    }
+
+    //Find or create RecolectionData for Resident, and add data register ;D
+    Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}, function(err, recolectionData) {
+      debug('recolectionData: ', recolectionData);
+      recolectionData.data.create(data, (err, data)=>{
+        if(err) debug(err);
+        debug('recolectionData with data: ', data)
+      });
+    });
+
   });
   
 

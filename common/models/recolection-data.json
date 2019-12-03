@@ -14,11 +14,6 @@
       "model": "Resident",
       "foreignKey": ""
     },
-    "recycler": {
-      "type": "belongsTo",
-      "model": "Recycler",
-      "foreignKey": ""
-    },
     "data":{
       "type": "embedsMany",
       "model": "Data",
