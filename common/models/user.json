@@ -13,8 +13,13 @@
       "required": true
     },
     "address": {
-      "type": "object",
-      "required": false
+      "type": {
+        "country": "string",
+        "city":"string",
+        "commune": "string",
+        "street": "string",
+        "location": "array"
+      }
     },
     "phone": {
       "type": "string",

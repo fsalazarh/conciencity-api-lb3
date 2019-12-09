@@ -31,11 +31,6 @@
       "model": "Bucket",
       "foreignKey": ""
     },
-    "wasteCollections": {
-      "type": "hasMany",
-      "model": "WasteCollection",
-      "foreignKey": ""
-    },
     "assignments": {
       "type": "hasMany",
       "model": "Assignment",
