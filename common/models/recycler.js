@@ -77,18 +77,18 @@ module.exports = function(Recycler) {
     Recycler.customDelete = function(id, cb){
       Recycler.findById(id, function(err, instance){
         if(err){
-          cb(err);
+          cb(err, null);
           return null;
         }
         const Recycler = instance;
         //Check active of instance
-        if(Recycler.active == 'true'){
+        if(Recycler.active == true){
           Recycler.updateAttributes({'active': false}, function(err, data){
             if(err){
-              cb(err);
+              cb(err, null);
               return null;
             }
-            cb(data);
+            cb(null, data);
           })
         }
         else{
