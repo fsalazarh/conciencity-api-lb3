@@ -87,18 +87,18 @@ module.exports = function(Resident) {
   Resident.customDelete = function(id, cb){
     Resident.findById(id, function(err, instance){
       if(err){
-        cb(err);
+        cb(err, null);
         return null;
       }
       const resident = instance;
       //Check active of instance
-      if(resident.active == 'true'){
+      if(resident.active == true){
         resident.updateAttributes({'active': false}, function(err, data){
           if(err){
             cb(err);
             return null;
           }
-          cb(data);
+          cb(null, data);
         })
       }
       else{
@@ -107,7 +107,7 @@ module.exports = function(Resident) {
         error.code = 'USER_NOT_ACTIVE'
         error.name = 'Resident ' + resident.name + ' was already deleted'
         error.message = 'Resident ' + resident.name + ' is not active'
-        cb(error);
+        cb(error, null);
       }
     })
   }
