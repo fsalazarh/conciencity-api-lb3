@@ -87,10 +87,6 @@
     "dataSource": "mongo",
     "public": false
   },
-  "Notification": {
-    "dataSource": "mongo",
-    "public": false
-  },
   "Assignment": {
     "dataSource": "mongo",
     "public": true
@@ -100,7 +96,7 @@
     "public": true
   },
   "Data": {
-    "dataSource": "transient",
-    "public": false
+    "dataSource": "mongo",
+    "public": true
   }
 }
