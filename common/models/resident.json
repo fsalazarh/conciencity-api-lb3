@@ -81,7 +81,8 @@
         "findById",
         "patchAttributes",
         "customDelete",
-        "__get__assignments"
+        "__get__assignments",
+        "__get__recolectionData"
       ]
     },
     {

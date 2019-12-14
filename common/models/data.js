@@ -5,6 +5,6 @@ var utils = require('../../lib/utils');
 
 module.exports = function(Data) {
   const Model = Data
-
+  
   
 };

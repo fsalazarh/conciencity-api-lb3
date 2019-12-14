@@ -200,39 +200,41 @@ module.exports = function(Resident) {
       http: {verb: 'POST', path: '/:id/data'}
   });
 
-  Resident.beforeRemote('__post__data', async function(ctx) {
+  Resident.beforeRemote('__post__data', async function(ctx, next) {
     //1. Find or create recolectionData for Resident
-    let err, recolectionData;
     // [err, recolectionData] = await to(Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}));
     
     //Find resident with his bucket
-    let resident;
+    let err, resident;
     [err, resident] = await to(Resident.findOne({where:{_id: ctx.args.id}, include: {relation: 'bucket'}}));
     resident = resident.toJSON()
     //Find recycler with his scale
     let recycler;
     [err, recycler] = await to(Model.app.models['Recycler'].findOne({where: {_id: ctx.args.options.user.id}, include: {relation: 'scale'}}));
     recycler = recycler.toJSON()
+    
 
-    let data = {
+    let data;
+    [err, data] = await to(Model.app.models['Data'].create({
       recyclerId: recycler.id,
       bucketId: resident.bucket.id,
       scaleId: recycler.scale.id,
       registerAt: new Date().toLocaleString(),
       weight: Math.floor(Math.random() * 5) + 1 
+    }))
+    if (err){
+      let error = new Error()
+      error.statusCode = 409
+      error.code = 'RECYCLER NO SCALE'
+      error.name = 'Recycler with no scale association'
+      error.message = 'Recycler with no scale association'
+      return next(error);
     }
 
-    //Find or create RecolectionData for Resident, and add data register ;D
-    Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}, function(err, recolectionData) {
-      debug('recolectionData: ', recolectionData);
-      recolectionData.data.create(data, (err, data)=>{
-        if(err) debug(err);
-        debug('recolectionData with data: ', data)
-      });
-    });
-
-  });
-  
+    let recolectionData, updatedRecolectionData;
+    [err, recolectionData] = await to(Model.app.models['RecolectionData'].findOrCreate({residentId: ctx.args.id}));
+    [err, updatedRecolectionData] = await to(recolectionData[0].data.create(data));
+    })
 
   //Disable Remote Methods 
   Resident.disableRemoteMethodByName('findOne');

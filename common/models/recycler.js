@@ -167,7 +167,4 @@ module.exports = function(Recycler) {
       return next();
     }
    })
-
-
-
 };

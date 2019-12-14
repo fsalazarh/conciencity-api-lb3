@@ -30,11 +30,6 @@
       "model": "Scale",
       "foreignKey": ""
     },
-    "notifications": {
-      "type": "hasMany",
-      "model": "Notification",
-      "foreignKey": ""
-    },
     "assignments": {
       "type": "hasMany",
       "model": "Assignment",
@@ -45,6 +40,11 @@
       "options": {
         "disableInclude": true
       }
+    },
+    "data": {
+      "type": "hasMany",
+      "model": "Data",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -86,7 +86,8 @@
         "__get__recyclerCommunities",
         "__get__community__composter_measurementsSensor",
         "__updateById__notifications",
-        "customDelete"
+        "customDelete",
+        "__get__data"
       ]
     },
     {
