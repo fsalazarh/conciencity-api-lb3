@@ -23,7 +23,7 @@ module.exports = function(Data) {
             let response = res.map(item => {return item.toJSON()})
             let totalWaste = response.reduce((a, b) => a + (b["weight"] || 0), 0);
             response = {
-              "totalWeight": totalWaste
+              "total": totalWaste
             }
             cb(null, response)
           }

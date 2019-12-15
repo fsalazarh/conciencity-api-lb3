@@ -93,7 +93,9 @@
         "find",
         "patchAttributes",
         "__updateById__assignments",
-        "__get__bucket"
+        "__get__bucket",
+        "count",
+        "__get__recolectionData"
       ]
     },
     {

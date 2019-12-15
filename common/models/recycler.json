@@ -98,7 +98,9 @@
         "find",
         "deleteById",
         "patchAttributes",
-        "__updateById__assignments"
+        "__updateById__assignments",
+        "count",
+        "__get__data"
       ]
     }
   ],
