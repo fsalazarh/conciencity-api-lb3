@@ -33,7 +33,21 @@
     }
   },
   "acls": [
-    
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "conciencity",
+      "permission": "ALLOW",
+      "property": [
+        "find",
+        "count",
+        "__get__totalWaste"
+      ]
+    }
   ],
   "methods": {}
 }
