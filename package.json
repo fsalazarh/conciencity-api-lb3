@@ -18,7 +18,7 @@
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "debug": "^4.1.0",
-    "fast-csv": "^2.4.1",
+    "fast-csv": "^4.3.6",
     "helmet": "^3.10.0",
     "loopback": "^3.22.0",
     "loopback-boot": "^2.6.5",
